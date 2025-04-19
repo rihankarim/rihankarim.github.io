@@ -319,33 +319,26 @@
 </main>
 
 <footer>
-  &copy; 2025 Rifat Karim — Voiceover Portfolio
+  <p>&copy; 2025 Rihan Karim. All rights reserved.</p>
 </footer>
 
 <script>
   const filterButtons = document.querySelectorAll('.filter-btn');
   const demos = document.querySelectorAll('.demo');
-  const mediaElements = document.querySelectorAll('audio, video');
 
   filterButtons.forEach(button => {
     button.addEventListener('click', () => {
       const category = button.getAttribute('data-category');
+      
       filterButtons.forEach(btn => btn.classList.remove('active'));
       button.classList.add('active');
+      
       demos.forEach(demo => {
         if (demo.classList.contains(category)) {
           demo.style.display = 'block';
         } else {
           demo.style.display = 'none';
         }
-      });
-    });
-  });
-
-  mediaElements.forEach(media => {
-    media.addEventListener('play', () => {
-      mediaElements.forEach(otherMedia => {
-        if (otherMedia !== media) otherMedia.pause();
       });
     });
   });
