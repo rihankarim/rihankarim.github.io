@@ -141,7 +141,7 @@
       margin-top: 0;
     }
 
-    audio {
+    audio, video {
       width: 100%;
       outline: none;
     }
@@ -297,50 +297,76 @@
         Your browser does not support the audio element.
       </audio>
     </div>
-
-    <div class="demo characters">
-      <h3>Characters Demo</h3>
-      <audio controls>
-        <source src="demo_characters.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
-      </audio>
-    </div>
   </section>
-
-  <div class="contact" id="contact">
-    <h2>Contact Me</h2>
-    <form action="https://formsubmit.co/rihankarim.bd@gmail.com" method="POST">
-      <input type="text" name="name" placeholder="Your Name" required>
-      <input type="email" name="_replyto" placeholder="Your Email" required>
-      <textarea name="message" placeholder="Your Message" rows="4" required></textarea>
-      <button type="submit">Send Message</button>
-    </form>
-  </div>
 </main>
 
+<div class="contact">
+  <h2>Contact Me</h2>
+  <form id="contact-form">
+    <input type="text" id="name" placeholder="Your Name" required />
+    <input type="email" id="email" placeholder="Your Email" required />
+    <textarea id="message" rows="4" placeholder="Your Message" required></textarea>
+    <button type="submit">Send Message</button>
+  </form>
+</div>
+
 <footer>
-  <p>&copy; 2025 Rihan Karim. All rights reserved.</p>
+  <p>© 2025 Rihan Karim - All Rights Reserved</p>
 </footer>
 
+<script src="https://cdn.emailjs.com/dist/email.min.js"></script>
 <script>
-  const filterButtons = document.querySelectorAll('.filter-btn');
+  emailjs.init('YOUR_USER_ID'); // Replace with your EmailJS user ID
+
+  const mediaElements = document.querySelectorAll('audio, video');
+
+  mediaElements.forEach(media => {
+    media.addEventListener('play', () => {
+      mediaElements.forEach(otherMedia => {
+        if (otherMedia !== media) otherMedia.pause();
+      });
+    });
+  });
+
+  const filterBtns = document.querySelectorAll('.filter-btn');
   const demos = document.querySelectorAll('.demo');
 
-  filterButtons.forEach(button => {
-    button.addEventListener('click', () => {
-      const category = button.getAttribute('data-category');
-      
-      filterButtons.forEach(btn => btn.classList.remove('active'));
-      button.classList.add('active');
-      
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(btn => btn.classList.remove('active'));
+      btn.classList.add('active');
+      const category = btn.dataset.category;
+
       demos.forEach(demo => {
-        if (demo.classList.contains(category)) {
+        if (demo.classList.contains(category) || category === 'all') {
           demo.style.display = 'block';
         } else {
           demo.style.display = 'none';
         }
       });
     });
+  });
+
+  document.getElementById('contact-form').addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const message = document.getElementById('message').value;
+
+    const templateParams = {
+      from_name: name,
+      from_email: email,
+      message: message,
+    };
+
+    emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams)
+      .then(response => {
+        alert('Message sent successfully!');
+      })
+      .catch(error => {
+        alert('Failed to send message. Please try again later.');
+      });
   });
 </script>
 
