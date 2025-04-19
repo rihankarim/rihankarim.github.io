@@ -306,77 +306,49 @@
       </audio>
     </div>
   </section>
-
-  <div class="contact" id="contact">
-    <h2>Contact</h2>
-    <form id="contact-form">
-      <input type="text" name="name" placeholder="Your Name" required />
-      <input type="email" name="email" placeholder="Your Email" required />
-      <textarea name="message" placeholder="Your Message" required></textarea>
-      <button type="submit">Send Message</button>
-    </form>
-  </div>
 </main>
 
 <footer>
-  <p>© 2025 Rihan Karim</p>
+  <p>© 2025 Rihan Karim. All Rights Reserved.</p>
 </footer>
 
 <script>
-  // Initialize EmailJS
-  emailjs.init("user_abc123xyz");  // Replace with your EmailJS user ID
-
-  // Category Filter Functionality
+  // Filter buttons
   const filterButtons = document.querySelectorAll('.filter-btn');
-  const demos = document.querySelectorAll('.demo');
+  const demoSections = document.querySelectorAll('.demo');
 
   filterButtons.forEach(button => {
     button.addEventListener('click', () => {
       filterButtons.forEach(btn => btn.classList.remove('active'));
       button.classList.add('active');
-      const category = button.getAttribute('data-category');
-      demos.forEach(demo => {
-        if (category === 'all' || demo.classList.contains(category)) {
-          demo.style.display = 'block';
-        } else {
-          demo.style.display = 'none';
-        }
+      const category = button.dataset.category;
+      demoSections.forEach(demo => {
+        demo.style.display = demo.classList.contains(category) ? 'block' : 'none';
       });
     });
   });
 
-  // Function to stop all audio and video elements
-  function stopAllMedia() {
-    const mediaElements = document.querySelectorAll('audio, video');
-    mediaElements.forEach(media => {
-      media.pause();
-      media.currentTime = 0;
-    });
-  }
+  // Media play/pause control
+  let currentAudio = null;
+  let currentVideo = null;
 
-  // Add event listeners to all audio and video elements
   const mediaElements = document.querySelectorAll('audio, video');
+
   mediaElements.forEach(media => {
     media.addEventListener('play', () => {
-      stopAllMedia();  // Stop all media when a new one starts playing
-      media.play();    // Play the current media
+      if (media.tagName === 'AUDIO') {
+        if (currentAudio && currentAudio !== media) {
+          currentAudio.pause();
+        }
+        currentAudio = media;
+      } else if (media.tagName === 'VIDEO') {
+        if (currentVideo && currentVideo !== media) {
+          currentVideo.pause();
+        }
+        currentVideo = media;
+      }
     });
   });
-
-  // EmailJS Form Submission
-  const form = document.getElementById('contact-form');
-  form.addEventListener('submit', function(event) {
-    event.preventDefault();
-
-    emailjs.sendForm('service_yourServiceID', 'template_yourTemplateID', form)
-      .then(function(response) {
-        alert('Message sent successfully!');
-        form.reset();
-      }, function(error) {
-        alert('Failed to send message. Please try again later.');
-      });
-  });
 </script>
-
 </body>
 </html>
