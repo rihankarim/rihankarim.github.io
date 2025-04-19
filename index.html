@@ -1,9 +1,313 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Rihan Karim</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Voiceover Portfolio</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f7f7f7;
+      color: #333;
+      text-align: center;
+    }
+
+    /* HEADER */
+    header {
+      background: #000;
+      color: #fff;
+      padding: 4rem 1rem 6rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header img {
+      border-radius: 50%;
+      width: 160px;
+      height: 160px;
+      object-fit: cover;
+      margin-bottom: 1.2rem;
+      border: 5px solid white;
+      animation: fadeInScale 1s ease-in-out;
+    }
+
+    header h1 {
+      font-size: 2.8rem;
+      margin: 0.3rem 0;
+      animation: fadeInUp 1.2s ease-in-out;
+    }
+
+    header .tagline {
+      font-size: 1.2rem;
+      font-weight: 300;
+      opacity: 0.8;
+      margin-bottom: 2rem;
+      animation: fadeInUp 1.4s ease-in-out;
+    }
+
+    .angled-divider {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 80px;
+      background: #f7f7f7;
+      clip-path: polygon(0 60%, 100% 0%, 100% 100%, 0% 100%);
+      animation: slideDivider 1s ease-out forwards;
+    }
+
+    @keyframes slideDivider {
+      0% { transform: translateY(100%); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+
+    @keyframes fadeInScale {
+      0% { transform: scale(0.8); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    @keyframes fadeInUp {
+      0% { transform: translateY(20px); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+
+    main {
+      padding: 2rem;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    h1, h2 {
+      margin-bottom: 0.5rem;
+    }
+
+    .demos {
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    .demo {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+      padding: 1rem;
+      display: none;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .demo:hover {
+      transform: scale(1.02);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+
+    .demo h3 {
+      margin-top: 0;
+    }
+
+    audio {
+      width: 100%;
+      outline: none;
+    }
+
+    .filter-buttons {
+      margin-bottom: 1.2rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .filter-btn {
+      background: #000;
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      cursor: pointer;
+      border-radius: 6px;
+      font-size: 1rem;
+      transition: background 0.3s ease, transform 0.2s ease;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .filter-btn:hover {
+      background: #333;
+      transform: scale(1.05);
+    }
+
+    .filter-btn.active {
+      background: #222;
+    }
+
+    .contact {
+      margin-top: 3rem;
+      text-align: center;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+
+    .contact-item a,
+    .contact-icon {
+      color: #333;
+      transition: color 0.3s ease, transform 0.3s ease;
+      text-decoration: none;
+      font-size: 1.1rem;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .contact-item a:hover,
+    .contact-icon:hover {
+      color: #888888;
+      transform: scale(1.2);
+    }
+
+    .contact-icon {
+      font-size: 20px;
+      margin-right: 10px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      color: #666;
+    }
+  </style>
 </head>
 <body>
-  <h1>Hello, this is Rihan Karim's GitHub Page!</h1>
+
+<header>
+  <img src="profile.jpg" alt="Profile Picture">
+  <h1>Rifat Karim</h1>
+  <p class="tagline">Make Your Story Speak…</p>
+  <div class="angled-divider"></div>
+</header>
+
+<main>
+  <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 1.5rem; font-weight: bold;">Demos</h2>
+
+  <div class="filter-buttons">
+    <button class="filter-btn" data-category="commercial">Ad</button>
+    <button class="filter-btn" data-category="youtube">YouTube</button>
+    <button class="filter-btn" data-category="documentaries">Documentaries</button>
+    <button class="filter-btn" data-category="podcast">Podcast</button>
+    <button class="filter-btn" data-category="tutorials">Tutorials</button>
+    <button class="filter-btn" data-category="characters">Characters</button>
+  </div>
+
+  <section class="demos">
+    <div class="demo commercial">
+      <h3>Ad Demo</h3>
+      <audio controls>
+        <source src="Ad1.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+      <audio controls>
+        <source src="Ad2.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+    </div>
+
+    <div class="demo youtube">
+      <h3>YouTube Demo</h3>
+      <video controls width="100%" style="margin-bottom: 1rem; border-radius: 8px;">
+        <source src="YouTube1.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <audio controls>
+        <source src="noIdea.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+    </div>
+
+    <div class="demo documentaries">
+      <h3>Documentaries Demo</h3>
+      <audio controls>
+        <source src="Documentary1.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+    </div>
+
+    <div class="demo podcast">
+      <h3>Podcast Demo</h3>
+      <audio controls>
+        <source src="demo_podcast.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+    </div>
+
+    <div class="demo tutorials">
+      <h3>Tutorials Demo</h3>
+      <audio controls>
+        <source src="demo_tutorials.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+    </div>
+
+    <div class="demo characters">
+      <h3>Characters Demo</h3>
+      <audio controls>
+        <source src="demo_characters.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+    </div>
+  </section>
+
+  <div class="contact">
+    <h2>Contact</h2>
+    <div class="contact-item">
+      <a href="mailto:rifatkarim1998@gmail.com">
+        <i class="fas fa-envelope contact-icon"></i>rifatkarim1998@gmail.com
+      </a>
+    </div>
+    <div class="contact-item">
+      <a href="https://wa.me/8801540515604" target="_blank">
+        <i class="fab fa-whatsapp contact-icon"></i>01540515604
+      </a>
+    </div>
+    <div class="contact-item">
+      <a href="tel:01540515604">
+        <i class="fas fa-phone-alt contact-icon"></i>01540515604
+      </a>
+    </div>
+  </div>
+</main>
+
+<footer>
+  &copy; 2025 Rifat Karim — Voiceover Portfolio
+</footer>
+
+<script>
+  const filterButtons = document.querySelectorAll('.filter-btn');
+  const demos = document.querySelectorAll('.demo');
+
+  filterButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const category = button.getAttribute('data-category');
+      filterButtons.forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
+      demos.forEach(demo => {
+        if (demo.classList.contains(category)) {
+          demo.style.display = 'block';
+        } else {
+          demo.style.display = 'none';
+        }
+      });
+    });
+  });
+</script>
+
 </body>
 </html>
