@@ -306,6 +306,18 @@
       });
     });
   });
+
+  // Ensure only one media plays at a time
+  const allMedia = document.querySelectorAll('audio, video');
+  allMedia.forEach(media => {
+    media.addEventListener('play', () => {
+      allMedia.forEach(other => {
+        if (other !== media) {
+          other.pause();
+        }
+      });
+    });
+  });
 </script>
 
 </body>
