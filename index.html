@@ -146,23 +146,22 @@
 
     .contact {
       position: absolute;
-      top: 3rem; /* Increased spacing from top */
+      top: 3rem;
       right: 1rem;
       text-align: right;
-    }
-
-    .contact-item {
-      margin-bottom: 0.7rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
     }
 
     .contact-item a {
-      color: #bbb; /* Subtle color for links */
+      color: #bbb;
       text-decoration: none;
-      font-size: 1rem; /* Reduced font size */
+      font-size: 1rem;
       display: inline-flex;
       align-items: center;
       padding: 0.4rem 0.6rem;
-      background-color: rgba(255, 255, 255, 0.05); /* subtle background */
+      background-color: rgba(255, 255, 255, 0.05);
       border-radius: 6px;
       transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease;
     }
@@ -184,6 +183,32 @@
       font-size: 0.9rem;
       color: #666;
     }
+
+    /* === Mobile Styles === */
+    @media (max-width: 767px) {
+      .contact {
+        flex-direction: row;
+        justify-content: flex-end;
+      }
+
+      .contact-item {
+        margin: 0;
+      }
+
+      .contact-item a {
+        padding: 0.6rem;
+        font-size: 0; /* hide text */
+      }
+
+      .contact-icon {
+        margin: 0;
+        font-size: 20px;
+      }
+
+      .angled-divider {
+        display: none;
+      }
+    }
   </style>
 </head>
 <body>
@@ -191,7 +216,6 @@
 <header>
   <img src="profile.jpg" alt="Profile Picture">
   <h1>Rihan Karim</h1>
-<!--   <p class="tagline">Voices can make you fly or cry…</p> -->
   <div class="angled-divider"></div>
 
   <div class="contact">
@@ -298,23 +322,16 @@
       filterButtons.forEach(btn => btn.classList.remove('active'));
       button.classList.add('active');
       demos.forEach(demo => {
-        if (demo.classList.contains(category)) {
-          demo.style.display = 'block';
-        } else {
-          demo.style.display = 'none';
-        }
+        demo.style.display = demo.classList.contains(category) ? 'block' : 'none';
       });
     });
   });
 
-  // Ensure only one media plays at a time
   const allMedia = document.querySelectorAll('audio, video');
   allMedia.forEach(media => {
     media.addEventListener('play', () => {
       allMedia.forEach(other => {
-        if (other !== media) {
-          other.pause();
-        }
+        if (other !== media) other.pause();
       });
     });
   });
