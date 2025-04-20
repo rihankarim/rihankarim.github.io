@@ -16,12 +16,6 @@
       background: #f7f7f7;
       color: #333;
       text-align: center;
-      animation: fadeInBody 1s ease-in-out;
-    }
-
-    @keyframes fadeInBody {
-      0% { opacity: 0; }
-      100% { opacity: 1; }
     }
 
     header {
@@ -30,12 +24,6 @@
       padding: 4rem 1rem; /* Updated padding */
       position: relative;
       overflow: hidden;
-      animation: fadeInUp 1s ease-in-out;
-    }
-
-    @keyframes fadeInUp {
-      0% { transform: translateY(50px); opacity: 0; }
-      100% { transform: translateY(0); opacity: 1; }
     }
 
     header img {
@@ -46,11 +34,6 @@
       margin-bottom: 1.2rem;
       border: 5px solid white;
       animation: fadeInScale 1s ease-in-out;
-    }
-
-    @keyframes fadeInScale {
-      0% { transform: scale(0.8); opacity: 0; }
-      100% { transform: scale(1); opacity: 1; }
     }
 
     header h1 {
@@ -67,11 +50,20 @@
       animation: fadeInUp 1.4s ease-in-out;
     }
 
+    @keyframes fadeInScale {
+      0% { transform: scale(0.8); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    @keyframes fadeInUp {
+      0% { transform: translateY(20px); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+
     main {
       padding: 2rem;
       max-width: 800px;
       margin: auto;
-      animation: fadeInUp 1.5s ease-in-out;
     }
 
     h1, h2 {
@@ -81,7 +73,6 @@
     .demos {
       display: grid;
       gap: 1.5rem;
-      animation: fadeInUp 2s ease-in-out;
     }
 
     .demo {
@@ -91,8 +82,6 @@
       padding: 1rem;
       display: none;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
-      opacity: 0;
-      animation: fadeInUp 2.5s ease-in-out forwards;
     }
 
     .demo:hover {
@@ -115,7 +104,6 @@
       flex-wrap: wrap;
       justify-content: center;
       gap: 0.5rem;
-      animation: fadeInUp 1.5s ease-in-out;
     }
 
     .filter-btn {
@@ -141,19 +129,10 @@
     }
 
     .contact {
-      position: absolute;
-      top: 3rem;
-      right: 1rem;
-      text-align: right;
+      margin-top: 2rem; /* Increased margin to move links slightly below */
       display: flex;
-      flex-direction: column;
-      gap: 0.7rem;
-      animation: fadeInRight 1.5s ease-in-out;
-    }
-
-    @keyframes fadeInRight {
-      0% { transform: translateX(50px); opacity: 0; }
-      100% { transform: translateX(0); opacity: 1; }
+      justify-content: center;
+      gap: 1rem;
     }
 
     .contact-item a {
@@ -184,14 +163,13 @@
       padding: 1rem;
       font-size: 0.9rem;
       color: #666;
-      animation: fadeInUp 2s ease-in-out;
     }
 
     /* === Mobile Styles === */
     @media (max-width: 767px) {
       .contact {
         flex-direction: row;
-        justify-content: flex-end;
+        justify-content: center;
       }
 
       .contact-item {
