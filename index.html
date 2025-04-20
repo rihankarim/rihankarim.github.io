@@ -156,7 +156,7 @@
 
     .tooltip {
       position: absolute;
-      bottom: -70px;
+      bottom: -43px; /* Adjusted for adjacency */
       left: 50%;
       transform: translateX(-50%);
       background: #222;
@@ -354,6 +354,11 @@
   emailIcon.addEventListener('click', (e) => {
     e.preventDefault();
     tooltip.classList.toggle('show');
+    
+    // Close the tooltip after 6 seconds
+    setTimeout(() => {
+      tooltip.classList.remove('show');
+    }, 6000);
   });
 
   copyBtn.addEventListener('click', () => {
@@ -364,6 +369,13 @@
         copyBtn.textContent = 'Copy';
       }, 2000);
     });
+  });
+
+  // Click outside to close tooltip
+  document.addEventListener('click', (e) => {
+    if (!emailIcon.contains(e.target)) {
+      tooltip.classList.remove('show');
+    }
   });
 </script>
 
