@@ -21,7 +21,7 @@
     header {
       background: #000;
       color: #fff;
-      padding: 4rem 1rem 4.5rem;
+      padding: 4rem 1rem; /* Updated padding */
       position: relative;
       overflow: hidden;
     }
@@ -48,22 +48,6 @@
       opacity: 0.8;
       margin-bottom: 2rem;
       animation: fadeInUp 1.4s ease-in-out;
-    }
-
-    .angled-divider {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 80px;
-      background: #f7f7f7;
-      clip-path: polygon(0 60%, 100% 0%, 100% 100%, 0% 100%);
-      animation: slideDivider 1s ease-out forwards;
-    }
-
-    @keyframes slideDivider {
-      0% { transform: translateY(100%); opacity: 0; }
-      100% { transform: translateY(0); opacity: 1; }
     }
 
     @keyframes fadeInScale {
@@ -145,19 +129,16 @@
     }
 
     .contact {
-      position: absolute;
-      top: 3rem;
-      right: 1rem;
-      text-align: right;
+      margin-top: 2rem; /* Increased margin to move links slightly below */
       display: flex;
-      flex-direction: column;
-      gap: 0.7rem;
+      justify-content: center;
+      gap: 1rem;
     }
 
     .contact-item a {
       color: #bbb;
       text-decoration: none;
-      font-size: 1rem;
+      font-size: 0;
       display: inline-flex;
       align-items: center;
       padding: 0.4rem 0.6rem;
@@ -173,7 +154,7 @@
     }
 
     .contact-icon {
-      margin-left: 8px;
+      margin: 0;
       font-size: 18px;
     }
 
@@ -188,25 +169,15 @@
     @media (max-width: 767px) {
       .contact {
         flex-direction: row;
-        justify-content: flex-end;
+        justify-content: center;
       }
 
       .contact-item {
         margin: 0;
       }
 
-      .contact-item a {
-        padding: 0.6rem;
-        font-size: 0; /* hide text */
-      }
-
       .contact-icon {
-        margin: 0;
         font-size: 20px;
-      }
-
-      .angled-divider {
-        display: none;
       }
     }
   </style>
@@ -216,22 +187,21 @@
 <header>
   <img src="profile.jpg" alt="Profile Picture">
   <h1>Rihan Karim</h1>
-  <div class="angled-divider"></div>
 
   <div class="contact">
     <div class="contact-item">
       <a href="mailto:rihankarim.bd@gmail.com">
-        rihankarim.bd@gmail.com <i class="fas fa-envelope contact-icon"></i>
+        <i class="fas fa-envelope contact-icon"></i>
       </a>
     </div>
     <div class="contact-item">
       <a href="https://wa.me/8801540515604" target="_blank">
-        01540515604 <i class="fab fa-whatsapp contact-icon"></i>
+        <i class="fab fa-whatsapp contact-icon"></i>
       </a>
     </div>
     <div class="contact-item">
       <a href="tel:01540515604">
-        01540515604 <i class="fas fa-phone-alt contact-icon"></i>
+        <i class="fas fa-phone-alt contact-icon"></i>
       </a>
     </div>
   </div>
