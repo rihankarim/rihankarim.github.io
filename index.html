@@ -146,6 +146,7 @@
       border-radius: 6px;
       transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease;
       position: relative;
+      animation: fadeInUp 1.6s ease-in-out;
     }
 
     .contact-item a:hover {
@@ -355,10 +356,10 @@
     e.preventDefault();
     tooltip.classList.toggle('show');
     
-    // Close the tooltip after 9 seconds
+    // Close the tooltip after 12 seconds
     setTimeout(() => {
       tooltip.classList.remove('show');
-    }, 9000);
+    }, 12000);
   });
 
   copyBtn.addEventListener('click', () => {
@@ -367,7 +368,7 @@
       copyBtn.textContent = 'Copied!';
       setTimeout(() => {
         copyBtn.textContent = 'Copy';
-      }, 3000);
+      }, 4000);
     });
   });
 
