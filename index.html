@@ -355,10 +355,10 @@
     e.preventDefault();
     tooltip.classList.toggle('show');
     
-    // Close the tooltip after 6 seconds
+    // Close the tooltip after 9 seconds
     setTimeout(() => {
       tooltip.classList.remove('show');
-    }, 6000);
+    }, 9000);
   });
 
   copyBtn.addEventListener('click', () => {
@@ -367,7 +367,7 @@
       copyBtn.textContent = 'Copied!';
       setTimeout(() => {
         copyBtn.textContent = 'Copy';
-      }, 2000);
+      }, 3000);
     });
   });
 
