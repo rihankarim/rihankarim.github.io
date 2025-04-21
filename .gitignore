@@ -1,0 +1,11 @@
+# System files
+.DS_Store
+
+# Logs
+*.log
+
+# Node packages (if using later)
+node_modules/
+
+# Environment variables (keep secrets private)
+.env
