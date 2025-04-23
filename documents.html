@@ -90,22 +90,6 @@
       border-radius: 10px 10px 0 0;
     }
 
-    .pdf-button {
-      display: none;
-      padding: 0.8rem 2rem;
-      background-color: #007bff;
-      color: white;
-      font-size: 1rem;
-      text-decoration: none;
-      font-weight: bold;
-      border-radius: 10px;
-      transition: background-color 0.3s ease;
-    }
-
-    .pdf-button:hover {
-      background-color: #0056b3;
-    }
-
     @media (max-width: 768px) {
       .doc-container {
         flex-direction: column;
@@ -115,14 +99,6 @@
       .doc-item iframe,
       .doc-item img {
         height: auto;
-      }
-
-      #resume {
-        display: none;
-      }
-
-      #resume-btn {
-        display: inline-block;
       }
     }
 
@@ -145,7 +121,6 @@
     <div class="doc-item">
       <h2>Resume</h2>
       <iframe id="resume" src="resume.pdf"></iframe>
-      <a href="resume.pdf" target="_blank" id="resume-btn" class="pdf-button">Open Resume</a>
     </div>
     <div class="doc-item">
       <h2>Certificate</h2>
