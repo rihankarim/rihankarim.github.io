@@ -73,27 +73,11 @@
       margin-bottom: 1rem;
     }
 
+    .doc-item iframe,
     .doc-item img {
       width: 100%;
       border: none;
       border-radius: 6px;
-    }
-
-    .pdf-button {
-      display: inline-block;
-      padding: 0.8rem 2rem;
-      background-color: #007bff;
-      color: white;
-      font-size: 1rem;
-      text-decoration: none;
-      font-weight: bold;
-      border-radius: 10px;
-      transition: background-color 0.3s ease;
-      margin-top: 1rem;
-    }
-
-    .pdf-button:hover {
-      background-color: #0056b3;
     }
 
     footer {
@@ -106,14 +90,39 @@
       border-radius: 10px 10px 0 0;
     }
 
+    .pdf-button {
+      display: none;
+      padding: 0.8rem 2rem;
+      background-color: #007bff;
+      color: white;
+      font-size: 1rem;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 10px;
+      transition: background-color 0.3s ease;
+    }
+
+    .pdf-button:hover {
+      background-color: #0056b3;
+    }
+
     @media (max-width: 768px) {
       .doc-container {
         flex-direction: column;
         align-items: center;
       }
 
+      .doc-item iframe,
       .doc-item img {
         height: auto;
+      }
+
+      #resume {
+        display: none;
+      }
+
+      #resume-btn {
+        display: inline-block;
       }
     }
 
@@ -135,7 +144,8 @@
   <div class="doc-container">
     <div class="doc-item">
       <h2>Resume</h2>
-      <a href="resume.pdf" target="_blank" class="pdf-button">Open Resume</a>
+      <iframe id="resume" src="resume.pdf"></iframe>
+      <a href="resume.pdf" target="_blank" id="resume-btn" class="pdf-button">Open Resume</a>
     </div>
     <div class="doc-item">
       <h2>Certificate</h2>
@@ -149,9 +159,22 @@
 </footer>
 
 <script>
+  function matchHeights() {
+    const resumeIframe = document.getElementById('resume');
+    const certificateImage = document.getElementById('certificate-img');
+
+    if (resumeIframe && certificateImage) {
+      const certHeight = certificateImage.clientHeight;
+      resumeIframe.style.height = certHeight + 'px';
+    }
+  }
+
   window.addEventListener('load', () => {
     document.body.classList.add('loaded');
+    matchHeights();
   });
+
+  window.addEventListener('resize', matchHeights);
 </script>
 
 </body>
