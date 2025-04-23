@@ -6,8 +6,7 @@
   <title>Resume & Certificates - Rihan Karim</title>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
   <style>
-    html, body {
-      height: 100vh;
+    body {
       margin: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: #f7f7f7;
@@ -15,8 +14,6 @@
       text-align: center;
       opacity: 0;
       transition: opacity 1s ease;
-      display: flex;
-      flex-direction: column;
     }
 
     body.loaded {
@@ -35,20 +32,15 @@
     }
 
     main {
-      flex: 1;
       padding: 2rem;
-      overflow: hidden;
     }
 
     .doc-container {
-      height: 100%;
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
       gap: 2rem;
       justify-content: center;
-      align-items: center;
-      overflow: hidden;
     }
 
     .doc-item {
