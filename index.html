@@ -157,7 +157,7 @@
 
     .tooltip {
       position: absolute;
-      bottom: -45px; /* Adjusted for adjacency */
+      bottom: -45px;
       left: 0%;
       transform: translateX(-50%);
       background: #222;
@@ -244,6 +244,11 @@
           rihankarim.bd@gmail.com
           <button id="copyBtn">Copy</button>
         </div>
+      </a>
+    </div>
+    <div class="contact-item">
+      <a href="resume.pdf" target="_blank">
+        <i class="fas fa-file-alt contact-icon"></i>
       </a>
     </div>
   </div>
@@ -356,7 +361,6 @@
     e.preventDefault();
     tooltip.classList.toggle('show');
     
-    // Close the tooltip after 12 seconds
     setTimeout(() => {
       tooltip.classList.remove('show');
     }, 12000);
@@ -372,7 +376,6 @@
     });
   });
 
-  // Click outside to close tooltip
   document.addEventListener('click', (e) => {
     if (!emailIcon.contains(e.target)) {
       tooltip.classList.remove('show');
