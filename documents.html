@@ -90,16 +90,26 @@
       border-radius: 10px 10px 0 0;
     }
 
+    /* Mobile-specific overrides */
     @media (max-width: 768px) {
       .doc-container {
         flex-direction: column;
         align-items: center;
       }
 
-      .doc-item iframe,
-      .doc-item img {
-        height: auto;
+      #resume-pdf {
+        display: none;
       }
+
+      #resume-img {
+        display: block;
+        width: 100%;
+        border-radius: 6px;
+      }
+    }
+
+    #resume-img {
+      display: none;
     }
 
     @keyframes fadeInUp {
@@ -120,7 +130,8 @@
   <div class="doc-container">
     <div class="doc-item">
       <h2>Resume</h2>
-      <iframe id="resume" src="resume.pdf"></iframe>
+      <iframe id="resume-pdf" src="resume.pdf"></iframe>
+      <img id="resume-img" src="mresume.jpg" alt="Resume Image" />
     </div>
     <div class="doc-item">
       <h2>Certificate</h2>
@@ -135,12 +146,13 @@
 
 <script>
   function matchHeights() {
-    const resumeIframe = document.getElementById('resume');
+    const resumePdf = document.getElementById('resume-pdf');
+    const resumeImg = document.getElementById('resume-img');
     const certificateImage = document.getElementById('certificate-img');
 
-    if (resumeIframe && certificateImage) {
+    if (resumePdf && certificateImage && window.innerWidth > 768) {
       const certHeight = certificateImage.clientHeight;
-      resumeIframe.style.height = certHeight + 'px';
+      resumePdf.style.height = certHeight + 'px';
     }
   }
 
