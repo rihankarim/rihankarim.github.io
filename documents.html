@@ -73,7 +73,6 @@
       margin-bottom: 1rem;
     }
 
-    .doc-item iframe,
     .doc-item img {
       width: 100%;
       border: none;
@@ -96,7 +95,6 @@
         align-items: center;
       }
 
-      .doc-item iframe,
       .doc-item img {
         height: auto;
       }
@@ -120,7 +118,7 @@
   <div class="doc-container">
     <div class="doc-item">
       <h2>Resume</h2>
-      <iframe id="resume" src="resume.pdf"></iframe>
+      <img id="resume-img" src="picresume.png" alt="Resume" />
     </div>
     <div class="doc-item">
       <h2>Certificate</h2>
@@ -135,12 +133,12 @@
 
 <script>
   function matchHeights() {
-    const resumeIframe = document.getElementById('resume');
+    const resumeImage = document.getElementById('resume-img');
     const certificateImage = document.getElementById('certificate-img');
 
-    if (resumeIframe && certificateImage) {
+    if (resumeImage && certificateImage) {
       const certHeight = certificateImage.clientHeight;
-      resumeIframe.style.height = certHeight + 'px';
+      resumeImage.style.height = certHeight + 'px';
     }
   }
 
