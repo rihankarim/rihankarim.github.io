@@ -97,6 +97,7 @@
       }
 
       .doc-item img {
+        width: 100%;
         height: auto;
       }
     }
@@ -137,9 +138,11 @@
     const resumeImage = document.getElementById('resume-img');
     const certificateImage = document.getElementById('certificate-img');
 
-    if (resumeImage && certificateImage) {
+    if (window.innerWidth > 768 && resumeImage && certificateImage) {
       const certHeight = certificateImage.clientHeight;
       resumeImage.style.height = certHeight + 'px';
+    } else {
+      resumeImage.style.height = 'auto';
     }
   }
 
