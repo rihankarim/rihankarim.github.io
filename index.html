@@ -62,7 +62,7 @@
 
     main {
       padding: 2rem;
-      max-width: 800px;
+      max-width: 900px;
       margin: auto;
     }
 
@@ -70,22 +70,24 @@
       margin-bottom: 0.5rem;
     }
 
+    /* Vertical Video Gallery */
     .demos {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1.2rem;
+      justify-items: center;
+      padding: 1rem 0;
     }
 
-    .demos video {
-      max-width: 100%;
-      height: auto;
-      border-radius: 10px;
+    .video-card video {
+      width: 100%;
+      aspect-ratio: 9 / 16;
+      border-radius: 12px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
-    .demos video:hover {
+    .video-card video:hover {
       transform: scale(1.03);
       box-shadow: 0 8px 20px rgba(0,0,0,0.2);
     }
@@ -220,20 +222,28 @@
   <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 2rem; font-weight: bold;">Recent Videos of Mine</h2>
 
   <section class="demos">
-    <video controls>
-      <source src="videos/video1.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
+    <div class="video-card">
+      <video controls>
+        <source src="videos/video1.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
 
-    <video controls>
-      <source src="videos/video2.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
+    <div class="video-card">
+      <video controls>
+        <source src="videos/video2.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
 
-    <video controls>
-      <source src="videos/video3.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
+    <div class="video-card">
+      <video controls>
+        <source src="videos/video3.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
+    <!-- Add more vertical videos here if needed -->
   </section>
 </main>
 
