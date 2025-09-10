@@ -151,7 +151,7 @@
 
     .video-card {
       cursor: pointer;
-      transition: transform 0.3s ease, filter 0.3s ease, opacity 0.3s ease;
+      transition: transform 0.3s ease, opacity 0.3s ease;
       opacity: 0;
       transform: translateY(20px);
       animation: fadeInGallery 0.8s forwards;
@@ -173,14 +173,12 @@
       aspect-ratio: 9 / 16;
       display: block;
       border-radius: 12px;
-      transition: transform 0.3s ease, filter 0.3s ease;
-      filter: brightness(0.9);
+      transition: transform 0.3s ease;
     }
 
-    /* Hover effect without shadow */
+    /* Hover effect only scale */
     .video-wrapper:hover video {
       transform: scale(1.03);
-      filter: brightness(1);
     }
 
     footer {
