@@ -71,61 +71,23 @@
     }
 
     .demos {
-      display: grid;
-      gap: 1.5rem;
-    }
-
-    .demo {
-      background: white;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.05);
-      padding: 1rem;
-      display: none;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .demo:hover {
-      transform: scale(1.02);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-    }
-
-    .demo h3 {
-      margin-top: 0;
-    }
-
-    audio {
-      width: 100%;
-      outline: none;
-    }
-
-    .filter-buttons {
-      margin-bottom: 1.2rem;
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 0.5rem;
+      gap: 1rem;
     }
 
-    .filter-btn {
-      background: #000;
-      color: white;
-      border: none;
-      padding: 0.75rem 1.5rem;
-      cursor: pointer;
-      border-radius: 6px;
-      font-size: 1rem;
-      transition: background 0.3s ease, transform 0.2s ease;
-      white-space: nowrap;
-      flex-shrink: 0;
+    .demos video {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
-    .filter-btn:hover {
-      background: #333;
-      transform: scale(1.05);
-    }
-
-    .filter-btn.active {
-      background: #222;
+    .demos video:hover {
+      transform: scale(1.03);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
     }
 
     .contact {
@@ -255,77 +217,23 @@
 </header>
 
 <main>
-  <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 1.5rem; font-weight: bold;">Demos</h2>
-
-  <div class="filter-buttons">
-    <button class="filter-btn" data-category="commercial">Ad</button>
-    <button class="filter-btn" data-category="youtube">YouTube</button>
-    <button class="filter-btn" data-category="documentaries">Documentaries</button>
-    <button class="filter-btn" data-category="podcast">Podcast</button>
-    <button class="filter-btn" data-category="elearning">E-learning</button>
-    <button class="filter-btn" data-category="characters">Characters</button>
-  </div>
+  <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 2rem; font-weight: bold;">Recent Videos of Mine</h2>
 
   <section class="demos">
-    <div class="demo commercial">
-      <h3>Ad Demo</h3>
-      <audio controls>
-        <source src="ad.wav" type="audio/mpeg">
-        Your browser does not support the audio element.
-      </audio>
-      <audio controls>
-        <source src="Ad3.wav" type="audio/mpeg">
-        Your browser does not support the audio element.
-      </audio>
-    </div>
+    <video controls>
+      <source src="videos/video1.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
 
-    <div class="demo youtube">
-      <h3>YouTube Demo</h3>
-      <audio controls>
-        <source src="story.wav" type="audio/mpeg">
-        Your browser does not support the audio element.
-      </audio>
-<!--       <video controls width="100%" style="margin-bottom: 1rem; border-radius: 8px;">
-        <source src="YouTube1.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video> -->
-      </div>
+    <video controls>
+      <source src="videos/video2.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
 
-    <div class="demo documentaries">
-      <h3>Documentaries Demo</h3>
-      <audio controls>
-        <source src="Documentary1.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
-      </audio>
-    </div>
-
-    <div class="demo podcast">
-      <h3>Podcast Demo</h3>
-      <audio controls>
-        <source src="podcastUpdated.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
-      </audio>
-    </div>
-
-    <div class="demo elearning">
-      <h3>E-learning Demo</h3>
-      <audio controls>
-        <source src="e-Learning.wav" type="audio/mpeg">
-        Your browser does not support the audio element.
-      </audio>
-    </div>
-
-    <div class="demo characters">
-      <h3>Characters Demo</h3>
-      <audio controls>
-        <source src="charecters.wav" type="audio/mpeg">
-        Your browser does not support the audio element.
-      </audio>
-      <audio controls>
-        <source src="Jubo.wav" type="audio/mpeg">
-        Your browser does not support the audio element.
-      </audio>
-    </div>
+    <video controls>
+      <source src="videos/video3.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
   </section>
 </main>
 
@@ -334,21 +242,7 @@
 </footer>
 
 <script>
-  const filterButtons = document.querySelectorAll('.filter-btn');
-  const demos = document.querySelectorAll('.demo');
-
-  filterButtons.forEach(button => {
-    button.addEventListener('click', () => {
-      const category = button.getAttribute('data-category');
-      filterButtons.forEach(btn => btn.classList.remove('active'));
-      button.classList.add('active');
-      demos.forEach(demo => {
-        demo.style.display = demo.classList.contains(category) ? 'block' : 'none';
-      });
-    });
-  });
-
-  const allMedia = document.querySelectorAll('audio, video');
+  const allMedia = document.querySelectorAll('video');
   allMedia.forEach(media => {
     media.addEventListener('play', () => {
       allMedia.forEach(other => {
