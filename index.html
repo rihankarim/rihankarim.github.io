@@ -54,6 +54,14 @@
       animation: fadeInUp 1s forwards 1.7s;
     }
 
+    /* Contact icons container */
+    .contact {
+      display: flex;            /* horizontal alignment */
+      justify-content: center;  /* center horizontally */
+      gap: 1rem;                /* spacing between icons */
+      flex-wrap: wrap;          /* wrap on very small screens */
+    }
+
     /* Animate contact icons individually */
     .contact-item a {
       color: #bbb;
@@ -84,7 +92,7 @@
     .tooltip {
       position: absolute;
       bottom: -45px;
-      left: 0%;
+      left: 50%;
       transform: translateX(-50%);
       background: #222;
       color: #fff;
@@ -169,7 +177,6 @@
       filter: brightness(0.9);
     }
 
-    /* Hover effect for thumbnails */
     .video-wrapper:hover video {
       transform: scale(1.03);
       filter: brightness(1);
