@@ -6,9 +6,7 @@
   <title>Video Editor Portfolio</title>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
   <style>
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
 
     body {
       margin: 0;
@@ -45,11 +43,14 @@
     header .tagline {
       font-size: 1.4rem;
       font-weight: 500;
-      opacity: 0.9;
+      opacity: 0;
       margin-bottom: 2rem;
-      animation: fadeInUp 1.4s ease-in-out;
-      color: #ffd700;
+      color: #f5f5f5;
+      animation: fadeSlideUp 1.5s forwards 1s;
+      transition: color 0.3s ease;
     }
+
+    header .tagline:hover { color: #ffffff; }
 
     @keyframes fadeInScale {
       0% { transform: scale(0.8); opacity: 0; }
@@ -61,49 +62,84 @@
       100% { transform: translateY(0); opacity: 1; }
     }
 
+    @keyframes fadeSlideUp {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
     main {
       padding: 2rem;
       max-width: 900px;
       margin: auto;
     }
 
-    h1, h2 {
-      margin-bottom: 0.5rem;
-    }
+    h1, h2 { margin-bottom: 0.5rem; }
 
-    /* Vertical Video Gallery */
+    /* Video Gallery with fade-in */
     .demos {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
       gap: 1.2rem;
       justify-items: center;
       padding: 1rem 0;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInGallery 1s forwards 0.8s;
     }
 
+    @keyframes fadeInGallery {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Video Card Hover */
     .video-card {
       cursor: pointer;
-    }
-
-    .video-card video {
-      width: 100%;
-      aspect-ratio: 9 / 16;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
-    .video-card:hover video {
-      transform: scale(1.03);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    .video-card:hover {
+      transform: scale(1.04);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.25);
     }
 
-    .video-title {
-      margin-top: 0.5rem;
+    /* Video Wrapper & Overlay */
+    .video-wrapper {
+      position: relative;
+      display: inline-block;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .video-wrapper video {
+      width: 100%;
+      aspect-ratio: 9 / 16;
+      display: block;
+      border-radius: 12px;
+    }
+
+    .video-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: 0.6rem 0;
+      background: rgba(0,0,0,0.6);
+      color: #fff;
       font-weight: 500;
       font-size: 1rem;
-      color: #333;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(100%);
+      transition: opacity 0.3s ease, transform 0.3s ease;
     }
 
+    .video-wrapper:hover .video-overlay {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Contact Icons */
     .contact {
       margin-top: 2rem;
       display: flex;
@@ -148,10 +184,7 @@
       z-index: 10;
     }
 
-    .tooltip.show {
-      opacity: 1;
-      pointer-events: auto;
-    }
+    .tooltip.show { opacity: 1; pointer-events: auto; }
 
     .tooltip button {
       background: #555;
@@ -164,14 +197,9 @@
       font-size: 1rem;
     }
 
-    .tooltip button:hover {
-      background: #777;
-    }
+    .tooltip button:hover { background: #777; }
 
-    .contact-icon {
-      margin: 0;
-      font-size: 18px;
-    }
+    .contact-icon { margin: 0; font-size: 18px; }
 
     footer {
       text-align: center;
@@ -181,18 +209,9 @@
     }
 
     @media (max-width: 767px) {
-      .contact {
-        flex-direction: row;
-        justify-content: center;
-      }
-
-      .contact-item {
-        margin: 0;
-      }
-
-      .contact-icon {
-        font-size: 20px;
-      }
+      .contact { flex-direction: row; justify-content: center; }
+      .contact-item { margin: 0; }
+      .contact-icon { font-size: 20px; }
     }
 
     /* Lightbox Modal */
@@ -234,14 +253,10 @@
 
   <div class="contact">
     <div class="contact-item">
-      <a href="tel:01540515604">
-        <i class="fas fa-phone-alt contact-icon"></i>
-      </a>
+      <a href="tel:01540515604"><i class="fas fa-phone-alt contact-icon"></i></a>
     </div>
     <div class="contact-item">
-      <a href="https://wa.me/8801540515604" target="_blank">
-        <i class="fab fa-whatsapp contact-icon"></i>
-      </a>
+      <a href="https://wa.me/8801540515604" target="_blank"><i class="fab fa-whatsapp contact-icon"></i></a>
     </div>
     <div class="contact-item">
       <a href="#" id="emailIcon">
@@ -260,24 +275,24 @@
 
   <section class="demos">
     <div class="video-card" data-title="AI Agent Promo" data-src="AI Agent.mp4">
-      <video controls preload="none">
-        <source src="AI Agent.mp4" type="video/mp4">
-      </video>
-      <div class="video-title">AI Agent Promo</div>
+      <div class="video-wrapper">
+        <video controls preload="none"><source src="AI Agent.mp4" type="video/mp4"></video>
+        <div class="video-overlay">AI Agent Promo</div>
+      </div>
     </div>
 
     <div class="video-card" data-title="Coffee Brand Reel" data-src="videos/video2.mp4">
-      <video controls preload="none">
-        <source src="videos/video2.mp4" type="video/mp4">
-      </video>
-      <div class="video-title">Coffee Brand Reel</div>
+      <div class="video-wrapper">
+        <video controls preload="none"><source src="videos/video2.mp4" type="video/mp4"></video>
+        <div class="video-overlay">Coffee Brand Reel</div>
+      </div>
     </div>
 
     <div class="video-card" data-title="Fitness Short" data-src="videos/video3.mp4">
-      <video controls preload="none">
-        <source src="videos/video3.mp4" type="video/mp4">
-      </video>
-      <div class="video-title">Fitness Short</div>
+      <div class="video-wrapper">
+        <video controls preload="none"><source src="videos/video3.mp4" type="video/mp4"></video>
+        <div class="video-overlay">Fitness Short</div>
+      </div>
     </div>
   </section>
 </main>
@@ -289,9 +304,7 @@
 <!-- Modal Lightbox -->
 <div class="modal" id="videoModal">
   <span class="modal-close" id="modalClose">&times;</span>
-  <div class="modal-content">
-    <video controls id="modalVideo"></video>
-  </div>
+  <div class="modal-content"><video controls id="modalVideo"></video></div>
 </div>
 
 <script>
@@ -299,9 +312,7 @@
   const allMedia = document.querySelectorAll('video');
   allMedia.forEach(media => {
     media.addEventListener('play', () => {
-      allMedia.forEach(other => {
-        if (other !== media) other.pause();
-      });
+      allMedia.forEach(other => { if (other !== media) other.pause(); });
     });
   });
 
@@ -317,8 +328,7 @@
   });
 
   copyBtn.addEventListener('click', () => {
-    const email = 'rihankarim.bd@gmail.com';
-    navigator.clipboard.writeText(email).then(() => {
+    navigator.clipboard.writeText('rihankarim.bd@gmail.com').then(() => {
       copyBtn.textContent = 'Copied!';
       setTimeout(() => { copyBtn.textContent = 'Copy'; }, 5000);
     });
@@ -335,8 +345,7 @@
 
   document.querySelectorAll('.video-card').forEach(card => {
     card.addEventListener('click', () => {
-      const src = card.getAttribute('data-src');
-      modalVideo.src = src;
+      modalVideo.src = card.getAttribute('data-src');
       modal.style.display = 'flex';
       modalVideo.play();
     });
