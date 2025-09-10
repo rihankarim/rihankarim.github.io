@@ -87,9 +87,12 @@
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
-    .video-card video:hover {
-      transform: scale(1.03);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    /* Hover effect only on desktop */
+    @media (hover: hover) and (pointer: fine) {
+      .video-card video:hover {
+        transform: scale(1.03);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      }
     }
 
     .contact {
@@ -242,7 +245,6 @@
         Your browser does not support the video tag.
       </video>
     </div>
-
     <!-- Add more vertical videos here if needed -->
   </section>
 </main>
@@ -252,6 +254,7 @@
 </footer>
 
 <script>
+  // Auto-pause other videos
   const allMedia = document.querySelectorAll('video');
   allMedia.forEach(media => {
     media.addEventListener('play', () => {
@@ -261,6 +264,7 @@
     });
   });
 
+  // Email tooltip
   const emailIcon = document.getElementById('emailIcon');
   const tooltip = document.getElementById('tooltip');
   const copyBtn = document.getElementById('copyBtn');
@@ -268,26 +272,19 @@
   emailIcon.addEventListener('click', (e) => {
     e.preventDefault();
     tooltip.classList.toggle('show');
-    
-    setTimeout(() => {
-      tooltip.classList.remove('show');
-    }, 12000);
+    setTimeout(() => { tooltip.classList.remove('show'); }, 12000);
   });
 
   copyBtn.addEventListener('click', () => {
     const email = 'rihankarim.bd@gmail.com';
     navigator.clipboard.writeText(email).then(() => {
       copyBtn.textContent = 'Copied!';
-      setTimeout(() => {
-        copyBtn.textContent = 'Copy';
-      }, 5000);
+      setTimeout(() => { copyBtn.textContent = 'Copy'; }, 5000);
     });
   });
 
   document.addEventListener('click', (e) => {
-    if (!emailIcon.contains(e.target)) {
-      tooltip.classList.remove('show');
-    }
+    if (!emailIcon.contains(e.target)) tooltip.classList.remove('show');
   });
 </script>
 
