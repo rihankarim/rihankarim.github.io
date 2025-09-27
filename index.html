@@ -124,11 +124,8 @@
 
     main { padding: 2rem; max-width: 900px; margin: auto; }
 
-    /* Fade-in stagger animation */
-    .fade-up {
-      opacity: 0;
-      transform: translateY(20px);
-    }
+    /* Fade-in elements (stagger handled via JS) */
+    .fade-up { opacity: 0; transform: translateY(20px); }
 
     @keyframes fadeInScale { 0% { transform: scale(0.8); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
     @keyframes fadeInUp { 0% { transform: translateY(20px); opacity: 0; } 100% { transform: translateY(0); opacity: 1; } }
@@ -141,11 +138,7 @@
       justify-items: center;
     }
 
-    .video-card {
-      cursor: pointer;
-      opacity: 0;
-      transform: translateY(20px);
-    }
+    .video-card { cursor: pointer; opacity: 0; transform: translateY(20px); }
 
     .video-wrapper {
       position: relative;
@@ -188,6 +181,8 @@
       justify-content: center;
       gap: 1rem;
       margin-top: 1rem;
+      opacity: 0;
+      transform: translateY(20px);
     }
 
     .carousel-btn {
@@ -204,22 +199,18 @@
     .carousel-btn:hover:not(:disabled) { background: #444; }
     .carousel-btn:disabled { background: #555; cursor: not-allowed; opacity: 0.6; }
 
-    /* Static stylish separator */
+    /* Simple solid separator */
     .section-separator {
       width: 80%;
       height: 4px;
       margin: 3rem auto;
       border-radius: 2px;
-      background: linear-gradient(90deg, #ff7a18, #af002d 50%, #319197);
-      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      background: #333; /* solid line */
+      opacity: 0;
+      transform: translateY(20px);
     }
 
-    footer {
-      text-align: center;
-      padding: 1rem;
-      font-size: 0.9rem;
-      color: #666;
-    }
+    footer { text-align: center; padding: 1rem; font-size: 0.9rem; color: #666; }
 
     @media (max-width: 767px) {
       .contact { flex-direction: row; justify-content: center; }
@@ -275,7 +266,7 @@
     </div>
   </section>
 
-  <!-- Static separator -->
+  <!-- Solid separator -->
   <div class="section-separator"></div>
 
   <!-- Vertical Projects Section -->
@@ -356,9 +347,13 @@
   carousel.addEventListener('scroll', updateButtons);
   updateButtons();
 
-  // Stagger animation for main elements
-  const animatedElements = document.querySelectorAll('main .landscape-carousel .video-wrapper, .carousel-nav, .section-separator, .demos .video-card');
-  animatedElements.forEach((el, index) => {
+  // Staggered appearance: header → icons → landscape → carousel → separator → vertical videos
+  const staggeredElements = [
+    ...document.querySelectorAll('header img, header h1, header .tagline, .contact-item a'),
+    ...document.querySelectorAll('.landscape-carousel .video-wrapper, .carousel-nav, .section-separator, .demos .video-card')
+  ];
+
+  staggeredElements.forEach((el, index) => {
     setTimeout(() => {
       el.style.opacity = '1';
       el.style.transform = 'translateY(0)';
