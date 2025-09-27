@@ -7,6 +7,7 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
   <style>
     html { scroll-behavior: smooth; }
+
     body {
       margin: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -14,6 +15,7 @@
       color: #333;
       text-align: center;
     }
+
     header {
       background: #000;
       color: #fff;
@@ -21,6 +23,7 @@
       position: relative;
       overflow: hidden;
     }
+
     header img {
       border-radius: 50%;
       width: 160px;
@@ -32,6 +35,7 @@
       transform: scale(0.8);
       animation: fadeInScale 1s forwards 0.5s;
     }
+
     header h1 {
       font-size: 2.8rem;
       margin: 0.3rem 0;
@@ -39,6 +43,7 @@
       transform: translateY(20px);
       animation: fadeInUp 1s forwards 1.1s;
     }
+
     header .tagline {
       font-size: 1.4rem;
       font-weight: 500;
@@ -48,12 +53,15 @@
       transform: translateY(20px);
       animation: fadeInUp 1s forwards 1.7s;
     }
+
+    /* Contact icons */
     .contact {
       display: flex;
       justify-content: center;
       gap: 1rem;
       flex-wrap: wrap;
     }
+
     .contact-item a {
       color: #bbb;
       text-decoration: none;
@@ -69,14 +77,17 @@
       transform: translateY(20px);
       animation: fadeInUp 0.8s forwards;
     }
+
     .contact-item:nth-child(1) a { animation-delay: 2.3s; }
     .contact-item:nth-child(2) a { animation-delay: 2.5s; }
     .contact-item:nth-child(3) a { animation-delay: 2.7s; }
+
     .contact-item a:hover {
       color: #000;
       background-color: #fff;
       transform: scale(1.07);
     }
+
     .tooltip {
       position: absolute;
       bottom: -45px;
@@ -93,7 +104,9 @@
       transition: opacity 0.3s;
       z-index: 10;
     }
+
     .tooltip.show { opacity: 1; pointer-events: auto; }
+
     .tooltip button {
       background: #555;
       color: #fff;
@@ -104,40 +117,112 @@
       cursor: pointer;
       font-size: 1rem;
     }
+
     .tooltip button:hover { background: #777; }
+
     .contact-icon { margin: 0; font-size: 18px; }
-    main { padding: 2rem; max-width: 1100px; margin: auto; }
+
+    main { padding: 2rem; max-width: 900px; margin: auto; }
     h1,h2 { margin-bottom: 0.5rem; }
-    .fade-up { opacity: 0; transform: translateY(20px); animation: fadeInGallery 1s forwards 3.0s; }
+
+    .fade-up {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInGallery 1s forwards 3.0s;
+    }
+
     @keyframes fadeInScale { 0% { transform: scale(0.8); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
     @keyframes fadeInUp { 0% { transform: translateY(20px); opacity: 0; } 100% { transform: translateY(0); opacity: 1; } }
     @keyframes fadeInGallery { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); } }
 
-    /* Video Gallery */
-    .demos { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1.2rem; justify-items: center; margin-bottom: 3rem; }
-    .video-card { cursor: pointer; transition: transform 0.3s ease, opacity 0.3s ease; opacity: 0; transform: translateY(20px); animation: fadeInGallery 0.8s forwards; }
+    /* Vertical videos grid */
+    .demos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1.2rem;
+      justify-items: center;
+    }
+
+    .video-card {
+      cursor: pointer;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInGallery 0.8s forwards;
+    }
+
     .video-card:nth-child(1) { animation-delay: 3.4s; }
     .video-card:nth-child(2) { animation-delay: 3.6s; }
     .video-card:nth-child(3) { animation-delay: 3.8s; }
-    .video-wrapper { position: relative; display: inline-block; border-radius: 12px; overflow: hidden; width: 100%; background: #000; }
-    .vertical-video { aspect-ratio: 9 / 16; }
-    .landscape-video { aspect-ratio: 16 / 9; }
-    .video-wrapper video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; border-radius: 12px; transition: transform 0.3s ease; }
+
+    .video-wrapper {
+      position: relative;
+      display: inline-block;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .video-wrapper video {
+      width: 100%;
+      aspect-ratio: 9 / 16;
+      display: block;
+      border-radius: 12px;
+      transition: transform 0.3s ease;
+    }
+
     .video-wrapper:hover video { transform: scale(1.03); }
 
     /* Landscape Carousel */
-    .landscape-carousel { display: flex; gap: 1.2rem; overflow-x: auto; scroll-snap-type: x mandatory; padding: 1rem 0; -webkit-overflow-scrolling: touch; scroll-behavior: smooth; scrollbar-width: none; }
+    .landscape-carousel {
+      display: flex;
+      gap: 1.2rem;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      padding: 1rem 0;
+      -webkit-overflow-scrolling: touch;
+      scroll-behavior: smooth;
+      scrollbar-width: none;
+    }
     .landscape-carousel::-webkit-scrollbar { display: none; }
-    .landscape-carousel .video-wrapper { flex: 0 0 360px; scroll-snap-align: start; }
+    .landscape-carousel .video-wrapper {
+      flex: 0 0 360px;
+      scroll-snap-align: start;
+      aspect-ratio: 16 / 9;
+    }
 
-    /* Carousel buttons */
-    .carousel-nav { display: flex; justify-content: center; gap: 1rem; margin-top: 1rem; }
-    .carousel-btn { background: #222; color: #fff; border: none; padding: 0.6rem 1.2rem; border-radius: 8px; cursor: pointer; transition: background 0.3s ease; font-size: 0.9rem; }
+    .carousel-nav {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .carousel-btn {
+      background: #222;
+      color: #fff;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      font-size: 0.9rem;
+    }
+
     .carousel-btn:hover:not(:disabled) { background: #444; }
     .carousel-btn:disabled { background: #555; cursor: not-allowed; opacity: 0.6; }
 
-    footer { text-align: center; padding: 1rem; font-size: 0.9rem; color: #666; }
-    @media (max-width: 767px) { .contact { flex-direction: row; justify-content: center; } .contact-item { margin: 0; } .contact-icon { font-size: 20px; } }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    @media (max-width: 767px) {
+      .contact { flex-direction: row; justify-content: center; }
+      .contact-item { margin: 0; }
+      .contact-icon { font-size: 20px; }
+    }
   </style>
 </head>
 <body>
@@ -172,13 +257,13 @@
   <section>
     <h2 class="fade-up" style="text-align: center; font-size: 2.5rem; margin-bottom: 2rem; font-weight: bold;">Landscape Projects</h2>
     <div class="landscape-carousel" id="landscapeCarousel">
-      <div class="video-wrapper landscape-video">
+      <div class="video-wrapper">
         <video controls preload="metadata"><source src="videos/landscape1.mp4" type="video/mp4"></video>
       </div>
-      <div class="video-wrapper landscape-video">
+      <div class="video-wrapper">
         <video controls preload="metadata"><source src="videos/landscape2.mp4" type="video/mp4"></video>
       </div>
-      <div class="video-wrapper landscape-video">
+      <div class="video-wrapper">
         <video controls preload="metadata"><source src="videos/landscape3.mp4" type="video/mp4"></video>
       </div>
     </div>
@@ -188,24 +273,22 @@
     </div>
   </section>
 
-  <!-- Vertical Projects Section -->
+  <!-- Vertical Projects Section (unchanged from original) -->
   <section>
     <h2 class="fade-up" style="text-align: center; font-size: 2.5rem; margin-bottom: 2rem; font-weight: bold;">Recent Projects</h2>
     <section class="demos">
       <div class="video-card">
-        <div class="video-wrapper vertical-video">
+        <div class="video-wrapper">
           <video controls preload="metadata"><source src="AI Agent.mp4" type="video/mp4"></video>
         </div>
       </div>
-
       <div class="video-card">
-        <div class="video-wrapper vertical-video">
+        <div class="video-wrapper">
           <video controls preload="metadata"><source src="videos/video2.mp4" type="video/mp4"></video>
         </div>
       </div>
-
       <div class="video-card">
-        <div class="video-wrapper vertical-video">
+        <div class="video-wrapper">
           <video controls preload="metadata"><source src="videos/video3.mp4" type="video/mp4"></video>
         </div>
       </div>
