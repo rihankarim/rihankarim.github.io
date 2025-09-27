@@ -123,17 +123,15 @@
     .contact-icon { margin: 0; font-size: 18px; }
 
     main { padding: 2rem; max-width: 900px; margin: auto; }
-    h1,h2 { margin-bottom: 0.5rem; }
 
+    /* Fade-in stagger animation */
     .fade-up {
       opacity: 0;
       transform: translateY(20px);
-      animation: fadeInGallery 1s forwards 3.0s;
     }
 
     @keyframes fadeInScale { 0% { transform: scale(0.8); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
     @keyframes fadeInUp { 0% { transform: translateY(20px); opacity: 0; } 100% { transform: translateY(0); opacity: 1; } }
-    @keyframes fadeInGallery { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); } }
 
     /* Vertical videos grid */
     .demos {
@@ -145,15 +143,9 @@
 
     .video-card {
       cursor: pointer;
-      transition: transform 0.3s ease, opacity 0.3s ease;
       opacity: 0;
       transform: translateY(20px);
-      animation: fadeInGallery 0.8s forwards;
     }
-
-    .video-card:nth-child(1) { animation-delay: 3.4s; }
-    .video-card:nth-child(2) { animation-delay: 3.6s; }
-    .video-card:nth-child(3) { animation-delay: 3.8s; }
 
     .video-wrapper {
       position: relative;
@@ -187,6 +179,8 @@
       flex: 0 0 100%;
       scroll-snap-align: center;
       aspect-ratio: 16 / 9;
+      opacity: 0;
+      transform: translateY(20px);
     }
 
     .carousel-nav {
@@ -210,21 +204,14 @@
     .carousel-btn:hover:not(:disabled) { background: #444; }
     .carousel-btn:disabled { background: #555; cursor: not-allowed; opacity: 0.6; }
 
-    /* Animated stylish separator line */
+    /* Static stylish separator */
     .section-separator {
       width: 80%;
       height: 4px;
       margin: 3rem auto;
       border-radius: 2px;
-      background: linear-gradient(90deg, #ff7a18, #af002d, #319197, #ff7a18);
-      background-size: 300% 100%;
-      animation: slideGradient 3s linear infinite;
+      background: linear-gradient(90deg, #ff7a18, #af002d 50%, #319197);
       box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-    }
-
-    @keyframes slideGradient {
-      0% { background-position: 0% 0; }
-      100% { background-position: 100% 0; }
     }
 
     footer {
@@ -271,7 +258,6 @@
 
   <!-- Landscape Projects Section -->
   <section>
-    <h2 class="fade-up" style="text-align: center; font-size: 2.5rem; margin-bottom: 2rem; font-weight: bold;">Landscape Projects</h2>
     <div class="landscape-carousel" id="landscapeCarousel">
       <div class="video-wrapper">
         <video controls preload="metadata"><source src="videos/landscape1.mp4" type="video/mp4"></video>
@@ -289,7 +275,7 @@
     </div>
   </section>
 
-  <!-- Animated separator -->
+  <!-- Static separator -->
   <div class="section-separator"></div>
 
   <!-- Vertical Projects Section -->
@@ -361,7 +347,7 @@
   }
 
   function scrollVideo(next = true) {
-    const videoWidth = carousel.querySelector('.video-wrapper').offsetWidth + 12; // +gap
+    const videoWidth = carousel.querySelector('.video-wrapper').offsetWidth + 12;
     carousel.scrollBy({ left: next ? videoWidth : -videoWidth, behavior: 'smooth' });
   }
 
@@ -369,6 +355,16 @@
   prevBtn.addEventListener('click', () => scrollVideo(false));
   carousel.addEventListener('scroll', updateButtons);
   updateButtons();
+
+  // Stagger animation for main elements
+  const animatedElements = document.querySelectorAll('main .landscape-carousel .video-wrapper, .carousel-nav, .section-separator, .demos .video-card');
+  animatedElements.forEach((el, index) => {
+    setTimeout(() => {
+      el.style.opacity = '1';
+      el.style.transform = 'translateY(0)';
+      el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    }, 300 * index);
+  });
 </script>
 
 </body>
