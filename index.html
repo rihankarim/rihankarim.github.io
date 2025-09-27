@@ -3,180 +3,73 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Motion Designer Portfolio</title>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+  <title>Video Editor Portfolio</title>
   <style>
-    html { scroll-behavior: smooth; }
-
     body {
+      font-family: Arial, sans-serif;
       margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #f7f7f7;
-      color: #333;
-      text-align: center;
+      background: #111;
+      color: #fff;
     }
 
     header {
-      background: #000;
-      color: #fff;
-      padding: 4rem 1rem 3rem 1rem;
-      position: relative;
-      overflow: hidden;
+      text-align: center;
+      padding: 2rem 1rem;
     }
 
-    header img {
-      border-radius: 50%;
-      width: 160px;
-      height: 160px;
-      object-fit: cover;
-      margin-bottom: 1.2rem;
-      border: 5px solid white;
-      opacity: 0;
-      transform: scale(0.8);
-      animation: fadeInScale 1s forwards 0.5s;
+    h1 {
+      margin: 0;
+      font-size: 2rem;
+      color: #f5f5f5;
     }
 
-    header h1 {
-      font-size: 2.8rem;
-      margin: 0.3rem 0;
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeInUp 1s forwards 1.1s;
+    h2 {
+      margin: 1rem 0;
+      color: #ddd;
     }
 
-    header .tagline {
-      font-size: 1.4rem;
-      font-weight: 500;
-      margin-bottom: 2rem;
-      color: #bbb;
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeInUp 1s forwards 1.7s;
-    }
-
-    /* Contact icons container */
-    .contact {
-      display: flex;           
-      justify-content: center;  
-      gap: 1rem;                
-      flex-wrap: wrap;          
-    }
-
-    .contact-item a {
-      color: #bbb;
-      text-decoration: none;
-      font-size: 0;
-      display: inline-flex;
-      align-items: center;
-      padding: 0.4rem 0.6rem;
-      background-color: rgba(255, 255, 255, 0.05);
-      border-radius: 6px;
-      transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease;
-      position: relative;
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeInUp 0.8s forwards;
-    }
-
-    .contact-item:nth-child(1) a { animation-delay: 2.3s; }
-    .contact-item:nth-child(2) a { animation-delay: 2.5s; }
-    .contact-item:nth-child(3) a { animation-delay: 2.7s; }
-
-    .contact-item a:hover {
-      color: #000;
-      background-color: #fff;
-      transform: scale(1.07);
-    }
-
-    .tooltip {
-      position: absolute;
-      bottom: -45px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: #222;
-      color: #fff;
-      padding: 0.5rem 1rem;
-      border-radius: 6px;
-      font-size: 0.9rem;
-      white-space: nowrap;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.3s;
-      z-index: 10;
-    }
-
-    .tooltip.show { opacity: 1; pointer-events: auto; }
-
-    .tooltip button {
-      background: #555;
-      color: #fff;
-      border: none;
-      margin-left: 0.5rem;
-      padding: 0.2rem 0.5rem;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 1rem;
-    }
-
-    .tooltip button:hover { background: #777; }
-
-    .contact-icon { margin: 0; font-size: 18px; }
-
-    main {
-      padding: 2rem;
-      max-width: 1100px;
-      margin: auto;
-    }
-
-    h1, h2 { margin-bottom: 0.5rem; }
-
-    .fade-up {
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeInGallery 1s forwards 3.0s;
-    }
-
-    @keyframes fadeInScale { 0% { transform: scale(0.8); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
-    @keyframes fadeInUp { 0% { transform: translateY(20px); opacity: 0; } 100% { transform: translateY(0); opacity: 1; } }
-    @keyframes fadeInGallery { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); } }
-
-    /* Vertical Video Gallery */
-    .demos {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 1.2rem;
-      justify-items: center;
-    }
-
-    .video-card {
-      cursor: pointer;
-      transition: transform 0.3s ease, opacity 0.3s ease;
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeInGallery 0.8s forwards;
-    }
-
-    .video-card:nth-child(1) { animation-delay: 3.4s; }
-    .video-card:nth-child(2) { animation-delay: 3.6s; }
-    .video-card:nth-child(3) { animation-delay: 3.8s; }
-
+    /* Common video wrapper */
     .video-wrapper {
       position: relative;
-      display: inline-block;
       border-radius: 12px;
       overflow: hidden;
+      width: 100%;
+      background: #000;
     }
 
-    .video-wrapper video {
-      width: 100%;
+    /* Vertical (9:16) */
+    .vertical-video {
       aspect-ratio: 9 / 16;
-      display: block;
+    }
+
+    /* Landscape (16:9) */
+    .landscape-video {
+      aspect-ratio: 16 / 9;
+    }
+
+    /* Videos fill wrapper */
+    .video-wrapper video {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
       border-radius: 12px;
       transition: transform 0.3s ease;
     }
 
     .video-wrapper:hover video {
       transform: scale(1.03);
+    }
+
+    /* Vertical Grid */
+    .demos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      padding: 1rem;
+      max-width: 1100px;
+      margin: 0 auto 3rem auto;
     }
 
     /* Landscape Carousel */
@@ -190,181 +83,110 @@
       scroll-behavior: smooth;
       scrollbar-width: none; /* Firefox */
     }
-    .landscape-carousel::-webkit-scrollbar { display: none; }
+    .landscape-carousel::-webkit-scrollbar {
+      display: none; /* Chrome, Safari */
+    }
 
-    .landscape-carousel .video-card {
-      flex: 0 0 auto;
-      width: 360px;
+    .landscape-carousel .video-wrapper {
+      flex: 0 0 360px;
       scroll-snap-align: start;
     }
 
-    .landscape-video video {
-      aspect-ratio: 16 / 9;
-      width: 100%;
-      border-radius: 12px;
-      transition: transform 0.3s ease;
+    /* Next/Prev buttons */
+    .carousel-nav {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin: 1rem 0 2rem 0;
     }
 
-    .landscape-video:hover video { transform: scale(1.03); }
-
-    /* Carousel Arrows */
-    .carousel-container {
-      position: relative;
-    }
     .carousel-btn {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(0,0,0,0.6);
+      background: #222;
       color: #fff;
       border: none;
-      font-size: 1.5rem;
-      padding: 0.5rem 1rem;
+      padding: 0.6rem 1.2rem;
+      border-radius: 8px;
       cursor: pointer;
-      border-radius: 50%;
-      z-index: 5;
       transition: background 0.3s ease;
-    }
-    .carousel-btn:hover { background: rgba(0,0,0,0.8); }
-    .carousel-btn.left { left: -50px; }
-    .carousel-btn.right { right: -50px; }
-
-    footer {
-      text-align: center;
-      padding: 1rem;
       font-size: 0.9rem;
-      color: #666;
     }
 
-    @media (max-width: 767px) {
-      .contact { flex-direction: row; justify-content: center; }
-      .contact-item { margin: 0; }
-      .contact-icon { font-size: 20px; }
-      .carousel-btn.left { left: 5px; }
-      .carousel-btn.right { right: 5px; }
+    .carousel-btn:hover:not(:disabled) {
+      background: #444;
+    }
+
+    .carousel-btn:disabled {
+      background: #555;
+      cursor: not-allowed;
+      opacity: 0.6;
     }
   </style>
 </head>
 <body>
+  <header>
+    <h1>My Video Editing Portfolio</h1>
+  </header>
 
-<header>
-  <img src="profile.jpg" alt="Profile Picture">
-  <h1>Rihan Karim</h1>
-  <p class="tagline">Motion Designer | Promotional</p>
-
-  <div class="contact">
-    <div class="contact-item">
-      <a href="tel:01540515604"><i class="fas fa-phone-alt contact-icon"></i></a>
+  <!-- Landscape Section -->
+  <section>
+    <h2 style="text-align:center;">Landscape Projects</h2>
+    <div class="landscape-carousel" id="landscapeCarousel">
+      <div class="video-wrapper landscape-video">
+        <video controls preload="metadata"><source src="videos/landscape1.mp4" type="video/mp4"></video>
+      </div>
+      <div class="video-wrapper landscape-video">
+        <video controls preload="metadata"><source src="videos/landscape2.mp4" type="video/mp4"></video>
+      </div>
+      <div class="video-wrapper landscape-video">
+        <video controls preload="metadata"><source src="videos/landscape3.mp4" type="video/mp4"></video>
+      </div>
     </div>
-    <div class="contact-item">
-      <a href="https://wa.me/8801540515604" target="_blank"><i class="fab fa-whatsapp contact-icon"></i></a>
+    <div class="carousel-nav">
+      <button class="carousel-btn prev">Previous</button>
+      <button class="carousel-btn next">Next</button>
     </div>
-    <div class="contact-item">
-      <a href="#" id="emailIcon">
-        <i class="fas fa-envelope contact-icon"></i>
-        <div class="tooltip" id="tooltip">
-          rihankarim.bd@gmail.com
-          <button id="copyBtn">Copy</button>
-        </div>
-      </a>
-    </div>
-  </div>
-</header>
+  </section>
 
-<main>
-  <!-- Landscape Projects Section -->
-  <h2 class="fade-up" style="text-align: center; font-size: 2.5rem; margin: 3rem 0 2rem; font-weight: bold;">
-    Landscape Projects
-  </h2>
-  <div class="carousel-container">
-    <button class="carousel-btn left" onclick="scrollCarousel(-1)">&#10094;</button>
-    <section class="landscape-carousel" id="landscapeCarousel">
-      <div class="video-card">
-        <div class="video-wrapper landscape-video">
-          <video controls preload="metadata"><source src="videos/landscape1.mp4" type="video/mp4"></video>
-        </div>
-      </div>
-      <div class="video-card">
-        <div class="video-wrapper landscape-video">
-          <video controls preload="metadata"><source src="videos/landscape2.mp4" type="video/mp4"></video>
-        </div>
-      </div>
-      <div class="video-card">
-        <div class="video-wrapper landscape-video">
-          <video controls preload="metadata"><source src="videos/landscape3.mp4" type="video/mp4"></video>
-        </div>
-      </div>
-      <div class="video-card">
-        <div class="video-wrapper landscape-video">
-          <video controls preload="metadata"><source src="videos/landscape4.mp4" type="video/mp4"></video>
-        </div>
-      </div>
-    </section>
-    <button class="carousel-btn right" onclick="scrollCarousel(1)">&#10095;</button>
-  </div>
-
-  <!-- Vertical Projects Section -->
-  <h2 class="fade-up" style="text-align: center; font-size: 2.5rem; margin: 3rem 0 2rem; font-weight: bold;">
-    Vertical Projects
-  </h2>
-  <section class="demos">
-    <div class="video-card">
-      <div class="video-wrapper">
+  <!-- Vertical Section -->
+  <section>
+    <h2 style="text-align:center;">Vertical Projects</h2>
+    <div class="demos">
+      <div class="video-wrapper vertical-video">
         <video controls preload="metadata"><source src="AI Agent.mp4" type="video/mp4"></video>
       </div>
-    </div>
-    <div class="video-card">
-      <div class="video-wrapper">
-        <video controls preload="metadata"><source src="videos/video2.mp4" type="video/mp4"></video>
+      <div class="video-wrapper vertical-video">
+        <video controls preload="metadata"><source src="Cyber Security.mp4" type="video/mp4"></video>
       </div>
-    </div>
-    <div class="video-card">
-      <div class="video-wrapper">
-        <video controls preload="metadata"><source src="videos/video3.mp4" type="video/mp4"></video>
+      <div class="video-wrapper vertical-video">
+        <video controls preload="metadata"><source src="Networking.mp4" type="video/mp4"></video>
       </div>
     </div>
   </section>
-</main>
 
-<footer>
-  &copy; 2025 Rihan Karim
-</footer>
-
-<script>
-  const allMedia = document.querySelectorAll('video');
-  allMedia.forEach(media => {
-    media.addEventListener('play', () => {
-      allMedia.forEach(other => { if (other !== media) other.pause(); });
-    });
-  });
-
-  const emailIcon = document.getElementById('emailIcon');
-  const tooltip = document.getElementById('tooltip');
-  const copyBtn = document.getElementById('copyBtn');
-
-  emailIcon.addEventListener('click', (e) => {
-    e.preventDefault();
-    tooltip.classList.toggle('show');
-    setTimeout(() => { tooltip.classList.remove('show'); }, 12000);
-  });
-
-  copyBtn.addEventListener('click', () => {
-    navigator.clipboard.writeText('rihankarim.bd@gmail.com').then(() => {
-      copyBtn.textContent = 'Copied!';
-      setTimeout(() => { copyBtn.textContent = 'Copy'; }, 5000);
-    });
-  });
-
-  document.addEventListener('click', (e) => {
-    if (!emailIcon.contains(e.target)) tooltip.classList.remove('show');
-  });
-
-  function scrollCarousel(direction) {
+  <script>
     const carousel = document.getElementById('landscapeCarousel');
-    const cardWidth = carousel.querySelector('.video-card').offsetWidth + 20;
-    carousel.scrollBy({ left: direction * cardWidth, behavior: 'smooth' });
-  }
-</script>
+    const prevBtn = document.querySelector('.carousel-btn.prev');
+    const nextBtn = document.querySelector('.carousel-btn.next');
 
+    function updateButtons() {
+      const scrollLeft = carousel.scrollLeft;
+      const maxScroll = carousel.scrollWidth - carousel.clientWidth;
+      prevBtn.disabled = scrollLeft <= 0;
+      nextBtn.disabled = scrollLeft >= maxScroll - 1;
+    }
+
+    nextBtn.addEventListener('click', () => {
+      carousel.scrollBy({ left: 400, behavior: 'smooth' });
+    });
+
+    prevBtn.addEventListener('click', () => {
+      carousel.scrollBy({ left: -400, behavior: 'smooth' });
+    });
+
+    carousel.addEventListener('scroll', updateButtons);
+
+    // Initialize button states
+    updateButtons();
+  </script>
 </body>
 </html>
