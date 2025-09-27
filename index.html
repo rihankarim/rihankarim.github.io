@@ -135,7 +135,7 @@
     @keyframes fadeInUp { 0% { transform: translateY(20px); opacity: 0; } 100% { transform: translateY(0); opacity: 1; } }
     @keyframes fadeInGallery { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); } }
 
-    /* Vertical videos grid (unchanged) */
+    /* Vertical videos grid */
     .demos {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -184,7 +184,7 @@
     }
 
     .landscape-carousel .video-wrapper {
-      flex: 0 0 100%; /* show only one video at a time */
+      flex: 0 0 100%;
       scroll-snap-align: center;
       aspect-ratio: 16 / 9;
     }
@@ -209,6 +209,23 @@
 
     .carousel-btn:hover:not(:disabled) { background: #444; }
     .carousel-btn:disabled { background: #555; cursor: not-allowed; opacity: 0.6; }
+
+    /* Animated stylish separator line */
+    .section-separator {
+      width: 80%;
+      height: 4px;
+      margin: 3rem auto;
+      border-radius: 2px;
+      background: linear-gradient(90deg, #ff7a18, #af002d, #319197, #ff7a18);
+      background-size: 300% 100%;
+      animation: slideGradient 3s linear infinite;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+
+    @keyframes slideGradient {
+      0% { background-position: 0% 0; }
+      100% { background-position: 100% 0; }
+    }
 
     footer {
       text-align: center;
@@ -272,26 +289,26 @@
     </div>
   </section>
 
-  <!-- Vertical Projects Section (unchanged) -->
-  <section>
-    <h2 class="fade-up" style="text-align: center; font-size: 2.5rem; margin-bottom: 2rem; font-weight: bold;">Recent Projects</h2>
-    <section class="demos">
-      <div class="video-card">
-        <div class="video-wrapper">
-          <video controls preload="metadata"><source src="AI Agent.mp4" type="video/mp4"></video>
-        </div>
+  <!-- Animated separator -->
+  <div class="section-separator"></div>
+
+  <!-- Vertical Projects Section -->
+  <section class="demos">
+    <div class="video-card">
+      <div class="video-wrapper">
+        <video controls preload="metadata"><source src="AI Agent.mp4" type="video/mp4"></video>
       </div>
-      <div class="video-card">
-        <div class="video-wrapper">
-          <video controls preload="metadata"><source src="videos/video2.mp4" type="video/mp4"></video>
-        </div>
+    </div>
+    <div class="video-card">
+      <div class="video-wrapper">
+        <video controls preload="metadata"><source src="videos/video2.mp4" type="video/mp4"></video>
       </div>
-      <div class="video-card">
-        <div class="video-wrapper">
-          <video controls preload="metadata"><source src="videos/video3.mp4" type="video/mp4"></video>
-        </div>
+    </div>
+    <div class="video-card">
+      <div class="video-wrapper">
+        <video controls preload="metadata"><source src="videos/video3.mp4" type="video/mp4"></video>
       </div>
-    </section>
+    </div>
   </section>
 
 </main>
