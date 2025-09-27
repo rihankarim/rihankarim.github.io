@@ -54,7 +54,7 @@
       animation: fadeInUp 1s forwards 1.7s;
     }
 
-    /* Contact icons container */
+    /* Contact icons */
     .contact {
       display: flex;           
       justify-content: center;  
@@ -62,7 +62,6 @@
       flex-wrap: wrap;          
     }
 
-    /* Animate contact icons individually */
     .contact-item a {
       color: #bbb;
       text-decoration: none;
@@ -176,12 +175,13 @@
       transition: transform 0.3s ease;
     }
 
-    /* Hover effect only scale */
-    .video-wrapper:hover video {
-      transform: scale(1.03);
-    }
+    .video-wrapper:hover video { transform: scale(1.03); }
 
     /* Landscape Carousel */
+    .landscape-container {
+      position: relative;
+    }
+
     .landscape-carousel {
       display: flex;
       gap: 1.2rem;
@@ -189,20 +189,12 @@
       scroll-snap-type: x mandatory;
       padding: 1rem 0;
       -webkit-overflow-scrolling: touch;
+      scroll-behavior: smooth;
     }
 
-    .landscape-carousel::-webkit-scrollbar {
-      height: 8px;
-    }
-
-    .landscape-carousel::-webkit-scrollbar-thumb {
-      background: #aaa;
-      border-radius: 4px;
-    }
-
-    .landscape-carousel::-webkit-scrollbar-track {
-      background: #eee;
-    }
+    .landscape-carousel::-webkit-scrollbar { height: 8px; }
+    .landscape-carousel::-webkit-scrollbar-thumb { background: #aaa; border-radius: 4px; }
+    .landscape-carousel::-webkit-scrollbar-track { background: #eee; }
 
     .landscape-carousel .video-card {
       flex: 0 0 auto;
@@ -217,9 +209,27 @@
       transition: transform 0.3s ease;
     }
 
-    .landscape-video:hover video {
-      transform: scale(1.03);
+    .landscape-video:hover video { transform: scale(1.03); }
+
+    /* Navigation arrows */
+    .nav-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.6);
+      color: white;
+      border: none;
+      font-size: 1.5rem;
+      padding: 0.5rem 0.8rem;
+      border-radius: 50%;
+      cursor: pointer;
+      z-index: 5;
+      transition: background 0.3s;
     }
+
+    .nav-arrow:hover { background: rgba(0,0,0,0.8); }
+    .nav-arrow.left { left: -20px; }
+    .nav-arrow.right { right: -20px; }
 
     footer {
       text-align: center;
@@ -232,6 +242,8 @@
       .contact { flex-direction: row; justify-content: center; }
       .contact-item { margin: 0; }
       .contact-icon { font-size: 20px; }
+      .nav-arrow.left { left: 5px; }
+      .nav-arrow.right { right: 5px; }
     }
   </style>
 </head>
@@ -262,58 +274,57 @@
 </header>
 
 <main>
+  <!-- Landscape (16:9) Carousel FIRST -->
   <h2 class="fade-up" style="text-align: center; font-size: 2.5rem; margin-bottom: 2rem; font-weight: bold;">
+    Landscape Projects
+  </h2>
+
+  <div class="landscape-container">
+    <button class="nav-arrow left" id="leftArrow"><i class="fas fa-chevron-left"></i></button>
+    <section class="landscape-carousel" id="landscapeCarousel">
+      <div class="video-card">
+        <div class="video-wrapper landscape-video">
+          <video controls preload="metadata"><source src="videos/landscape1.mp4" type="video/mp4"></video>
+        </div>
+      </div>
+      <div class="video-card">
+        <div class="video-wrapper landscape-video">
+          <video controls preload="metadata"><source src="videos/landscape2.mp4" type="video/mp4"></video>
+        </div>
+      </div>
+      <div class="video-card">
+        <div class="video-wrapper landscape-video">
+          <video controls preload="metadata"><source src="videos/landscape3.mp4" type="video/mp4"></video>
+        </div>
+      </div>
+      <div class="video-card">
+        <div class="video-wrapper landscape-video">
+          <video controls preload="metadata"><source src="videos/landscape4.mp4" type="video/mp4"></video>
+        </div>
+      </div>
+    </section>
+    <button class="nav-arrow right" id="rightArrow"><i class="fas fa-chevron-right"></i></button>
+  </div>
+
+  <!-- Vertical (9:16) Projects -->
+  <h2 class="fade-up" style="text-align: center; font-size: 2.5rem; margin: 3rem 0 2rem; font-weight: bold;">
     Recent Projects
   </h2>
 
-  <!-- Vertical (9:16) Videos -->
   <section class="demos">
     <div class="video-card">
       <div class="video-wrapper">
         <video controls preload="metadata"><source src="AI Agent.mp4" type="video/mp4"></video>
       </div>
     </div>
-
     <div class="video-card">
       <div class="video-wrapper">
         <video controls preload="metadata"><source src="videos/video2.mp4" type="video/mp4"></video>
       </div>
     </div>
-
     <div class="video-card">
       <div class="video-wrapper">
         <video controls preload="metadata"><source src="videos/video3.mp4" type="video/mp4"></video>
-      </div>
-    </div>
-  </section>
-
-  <!-- Landscape (16:9) Carousel -->
-  <h2 class="fade-up" style="text-align: center; font-size: 2.5rem; margin: 3rem 0 2rem; font-weight: bold;">
-    Landscape Projects
-  </h2>
-
-  <section class="landscape-carousel">
-    <div class="video-card">
-      <div class="video-wrapper landscape-video">
-        <video controls preload="metadata"><source src="videos/landscape1.mp4" type="video/mp4"></video>
-      </div>
-    </div>
-
-    <div class="video-card">
-      <div class="video-wrapper landscape-video">
-        <video controls preload="metadata"><source src="videos/landscape2.mp4" type="video/mp4"></video>
-      </div>
-    </div>
-
-    <div class="video-card">
-      <div class="video-wrapper landscape-video">
-        <video controls preload="metadata"><source src="videos/landscape3.mp4" type="video/mp4"></video>
-      </div>
-    </div>
-
-    <div class="video-card">
-      <div class="video-wrapper landscape-video">
-        <video controls preload="metadata"><source src="videos/landscape4.mp4" type="video/mp4"></video>
       </div>
     </div>
   </section>
@@ -350,6 +361,19 @@
 
   document.addEventListener('click', (e) => {
     if (!emailIcon.contains(e.target)) tooltip.classList.remove('show');
+  });
+
+  // Carousel arrows
+  const carousel = document.getElementById('landscapeCarousel');
+  const leftArrow = document.getElementById('leftArrow');
+  const rightArrow = document.getElementById('rightArrow');
+
+  leftArrow.addEventListener('click', () => {
+    carousel.scrollBy({ left: -350, behavior: 'smooth' });
+  });
+
+  rightArrow.addEventListener('click', () => {
+    carousel.scrollBy({ left: 350, behavior: 'smooth' });
   });
 </script>
 
