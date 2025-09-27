@@ -7,6 +7,7 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
   <style>
     html { scroll-behavior: smooth; }
+
     body {
       margin: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -14,6 +15,7 @@
       color: #333;
       text-align: center;
     }
+
     header {
       background: #000;
       color: #fff;
@@ -21,11 +23,12 @@
       position: relative;
       overflow: hidden;
     }
+
     /* Header animations */
-    header img { opacity: 0; transform: translateY(20px); }
-    header h1 { opacity: 0; transform: translateY(20px); }
-    header .tagline { opacity: 0; transform: translateY(20px); }
-    .contact-item a { opacity: 0; transform: translateY(20px); }
+    header img { opacity: 0; transform: translateY(20px); visibility: hidden; }
+    header h1 { opacity: 0; transform: translateY(20px); visibility: hidden; }
+    header .tagline { opacity: 0; transform: translateY(20px); visibility: hidden; }
+    .contact-item a { opacity: 0; transform: translateY(20px); visibility: hidden; }
 
     header img {
       border-radius: 50%;
@@ -35,16 +38,19 @@
       margin-bottom: 1.2rem;
       border: 5px solid white;
     }
+
     header h1 {
       font-size: 2.8rem;
       margin: 0.3rem 0;
     }
+
     header .tagline {
       font-size: 1.4rem;
       font-weight: 500;
       margin-bottom: 2rem;
       color: #bbb;
     }
+
     /* Contact icons */
     .contact {
       display: flex;
@@ -52,6 +58,7 @@
       gap: 1rem;
       flex-wrap: wrap;
     }
+
     .contact-item a {
       color: #bbb;
       text-decoration: none;
@@ -64,11 +71,13 @@
       transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease;
       position: relative;
     }
+
     .contact-item a:hover {
       color: #000;
       background-color: #fff;
       transform: scale(1.07);
     }
+
     .tooltip {
       position: absolute;
       bottom: -45px;
@@ -85,7 +94,9 @@
       transition: opacity 0.3s;
       z-index: 10;
     }
+
     .tooltip.show { opacity: 1; pointer-events: auto; }
+
     .tooltip button {
       background: #555;
       color: #fff;
@@ -96,8 +107,11 @@
       cursor: pointer;
       font-size: 1rem;
     }
+
     .tooltip button:hover { background: #777; }
+
     .contact-icon { margin: 0; font-size: 18px; }
+
     main { padding: 2rem; max-width: 900px; margin: auto; }
 
     /* Vertical videos grid */
@@ -107,7 +121,9 @@
       gap: 1.2rem;
       justify-items: center;
     }
-    .video-card { cursor: pointer; opacity: 0; transform: translateY(20px); }
+
+    .video-card { cursor: pointer; opacity: 0; transform: translateY(20px); visibility: hidden; }
+
     .video-wrapper {
       position: relative;
       display: inline-block;
@@ -115,7 +131,10 @@
       overflow: hidden;
       opacity: 0;
       transform: translateY(20px);
+      visibility: hidden;
+      transition: opacity 0.6s ease, transform 0.6s ease;
     }
+
     .video-wrapper video {
       width: 100%;
       aspect-ratio: 9 / 16;
@@ -123,6 +142,7 @@
       border-radius: 12px;
       transition: transform 0.3s ease;
     }
+
     .video-wrapper:hover video { transform: scale(1.03); }
 
     /* Landscape Carousel */
@@ -135,10 +155,13 @@
       scroll-behavior: smooth;
       position: relative;
     }
+
     .landscape-carousel .video-wrapper {
       flex: 0 0 100%;
       scroll-snap-align: center;
+      aspect-ratio: 16 / 9;
     }
+
     .carousel-nav {
       display: flex;
       justify-content: center;
@@ -146,7 +169,10 @@
       margin-top: 1rem;
       opacity: 0;
       transform: translateY(20px);
+      visibility: hidden;
+      transition: opacity 0.6s ease, transform 0.6s ease;
     }
+
     .carousel-btn {
       background: #222;
       color: #fff;
@@ -157,6 +183,7 @@
       transition: background 0.3s ease;
       font-size: 0.9rem;
     }
+
     .carousel-btn:hover:not(:disabled) { background: #444; }
     .carousel-btn:disabled { background: #555; cursor: not-allowed; opacity: 0.6; }
 
@@ -166,10 +193,13 @@
       height: 2px;
       margin: 3rem auto;
       border-radius: 1px;
-      background: #aaa;
+      background: #aaa; /* subtle gray */
       opacity: 0;
       transform: translateY(20px);
+      visibility: hidden;
+      transition: opacity 0.6s ease, transform 0.6s ease;
     }
+
     footer { text-align: center; padding: 1rem; font-size: 0.9rem; color: #666; }
 
     @media (max-width: 767px) {
@@ -210,9 +240,15 @@
   <!-- Landscape Projects Section -->
   <section>
     <div class="landscape-carousel" id="landscapeCarousel">
-      <div class="video-wrapper"><video controls preload="metadata"><source src="ooo.mp4" type="video/mp4"></video></div>
-      <div class="video-wrapper"><video controls preload="metadata"><source src="shampoo.mp4" type="video/mp4"></video></div>
-      <div class="video-wrapper"><video controls preload="metadata"><source src="strawberry.mp4" type="video/mp4"></video></div>
+      <div class="video-wrapper">
+        <video controls preload="metadata"><source src="ooo.mp4" type="video/mp4"></video>
+      </div>
+      <div class="video-wrapper">
+        <video controls preload="metadata"><source src="shampoo.mp4" type="video/mp4"></video>
+      </div>
+      <div class="video-wrapper">
+        <video controls preload="metadata"><source src="strawberry.mp4" type="video/mp4"></video>
+      </div>
     </div>
     <div class="carousel-nav">
       <button class="carousel-btn prev">Previous</button>
@@ -225,9 +261,21 @@
 
   <!-- Vertical Projects Section -->
   <section class="demos">
-    <div class="video-card"><div class="video-wrapper"><video controls preload="metadata"><source src="AI Agent.mp4" type="video/mp4"></video></div></div>
-    <div class="video-card"><div class="video-wrapper"><video controls preload="metadata"><source src="videos/video2.mp4" type="video/mp4"></video></div></div>
-    <div class="video-card"><div class="video-wrapper"><video controls preload="metadata"><source src="videos/video3.mp4" type="video/mp4"></video></div></div>
+    <div class="video-card">
+      <div class="video-wrapper">
+        <video controls preload="metadata"><source src="AI Agent.mp4" type="video/mp4"></video>
+      </div>
+    </div>
+    <div class="video-card">
+      <div class="video-wrapper">
+        <video controls preload="metadata"><source src="videos/video2.mp4" type="video/mp4"></video>
+      </div>
+    </div>
+    <div class="video-card">
+      <div class="video-wrapper">
+        <video controls preload="metadata"><source src="videos/video3.mp4" type="video/mp4"></video>
+      </div>
+    </div>
   </section>
 
 </main>
@@ -237,7 +285,7 @@
 </footer>
 
 <script>
-  // Pause other videos
+  // Pause other videos when one plays
   const allMedia = document.querySelectorAll('video');
   allMedia.forEach(media => {
     media.addEventListener('play', () => {
@@ -249,18 +297,21 @@
   const emailIcon = document.getElementById('emailIcon');
   const tooltip = document.getElementById('tooltip');
   const copyBtn = document.getElementById('copyBtn');
-  emailIcon.addEventListener('click', e => {
+
+  emailIcon.addEventListener('click', (e) => {
     e.preventDefault();
     tooltip.classList.toggle('show');
     setTimeout(() => { tooltip.classList.remove('show'); }, 12000);
   });
+
   copyBtn.addEventListener('click', () => {
     navigator.clipboard.writeText('rihankarim.bd@gmail.com').then(() => {
       copyBtn.textContent = 'Copied!';
       setTimeout(() => { copyBtn.textContent = 'Copy'; }, 5000);
     });
   });
-  document.addEventListener('click', e => {
+
+  document.addEventListener('click', (e) => {
     if (!emailIcon.contains(e.target)) tooltip.classList.remove('show');
   });
 
@@ -268,70 +319,50 @@
   const carousel = document.getElementById('landscapeCarousel');
   const prevBtn = document.querySelector('.carousel-btn.prev');
   const nextBtn = document.querySelector('.carousel-btn.next');
+
   function updateButtons() {
     const scrollLeft = carousel.scrollLeft;
     const maxScroll = carousel.scrollWidth - carousel.clientWidth;
     prevBtn.disabled = scrollLeft <= 0;
     nextBtn.disabled = scrollLeft >= maxScroll - 1;
   }
+
   function scrollVideo(next = true) {
     const videoWidth = carousel.querySelector('.video-wrapper').offsetWidth + 12;
     carousel.scrollBy({ left: next ? videoWidth : -videoWidth, behavior: 'smooth' });
   }
+
   nextBtn.addEventListener('click', () => scrollVideo(true));
   prevBtn.addEventListener('click', () => scrollVideo(false));
   carousel.addEventListener('scroll', updateButtons);
   updateButtons();
 
-  // Stagger header, contacts, separator
-  const basicElements = [
+  // Staggered appearance in strict order
+  const staggeredElements = [
     document.querySelector('header img'),
     document.querySelector('header h1'),
     document.querySelector('header .tagline'),
     ...document.querySelectorAll('.contact-item a'),
+    ...document.querySelectorAll('.landscape-carousel .video-wrapper'),
     document.querySelector('.carousel-nav'),
-    document.querySelector('.section-separator')
+    document.querySelector('.section-separator'),
+    ...document.querySelectorAll('.demos .video-card')
   ];
-  basicElements.forEach((el,i)=>setTimeout(()=>{
-    el.style.opacity='1';
-    el.style.transform='translateY(0)';
-    el.style.transition='opacity 0.6s ease, transform 0.6s ease';
-  }, i*400));
 
-  // Staggered appearance **after video loaded** sequentially
-  function staggerVideosSequential(selector) {
-    const videos = Array.from(document.querySelectorAll(selector));
-    let delay = 0;
-    function showVideo(i) {
-      if(i >= videos.length) return;
-      const video = videos[i];
-      video.addEventListener('loadeddata', () => {
-        setTimeout(() => {
-          const wrapper = video.parentElement;
-          wrapper.style.opacity = '1';
-          wrapper.style.transform = 'translateY(0)';
-          wrapper.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-          // Next video after current one is visible
-          showVideo(i+1);
-        }, delay);
-      }, { once: true });
+  staggeredElements.forEach((el, index) => {
+    let delay = 400 * index;
+
+    // Landscape carousel & nav appear after header & contacts
+    if (el.closest('.landscape-carousel') || el.classList.contains('carousel-nav')) {
+      const headerAndContactsCount = 1 + 1 + 1 + document.querySelectorAll('.contact-item a').length;
+      delay = 400 * headerAndContactsCount + 400 * (index - headerAndContactsCount);
     }
-    showVideo(0);
-  }
 
-  // Apply sequential stagger to landscape
-  staggerVideosSequential('.landscape-carousel video');
-
-  // Vertical videos: fade in after load (not strictly sequential)
-  document.querySelectorAll('.demos video').forEach((video,i)=>{
-    video.addEventListener('loadeddata', () => {
-      setTimeout(() => {
-        const wrapper = video.parentElement;
-        wrapper.style.opacity = '1';
-        wrapper.style.transform = 'translateY(0)';
-        wrapper.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-      }, i*200);
-    });
+    setTimeout(() => {
+      el.style.opacity = '1';
+      el.style.transform = 'translateY(0)';
+      el.style.visibility = 'visible';
+    }, delay);
   });
 </script>
 
