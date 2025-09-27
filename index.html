@@ -25,10 +25,10 @@
     }
 
     /* Header animations */
-    header img { opacity: 0; transform: translateY(20px); visibility: hidden; }
-    header h1 { opacity: 0; transform: translateY(20px); visibility: hidden; }
-    header .tagline { opacity: 0; transform: translateY(20px); visibility: hidden; }
-    .contact-item a { opacity: 0; transform: translateY(20px); visibility: hidden; }
+    header img { opacity: 0; transform: translateY(20px); }
+    header h1 { opacity: 0; transform: translateY(20px); }
+    header .tagline { opacity: 0; transform: translateY(20px); }
+    .contact-item a { opacity: 0; transform: translateY(20px); }
 
     header img {
       border-radius: 50%;
@@ -122,17 +122,13 @@
       justify-items: center;
     }
 
-    .video-card { cursor: pointer; opacity: 0; transform: translateY(20px); visibility: hidden; }
+    .video-card { cursor: pointer; opacity: 0; transform: translateY(20px); }
 
     .video-wrapper {
       position: relative;
       display: inline-block;
       border-radius: 12px;
       overflow: hidden;
-      opacity: 0;
-      transform: translateY(20px);
-      visibility: hidden;
-      transition: opacity 0.6s ease, transform 0.6s ease;
     }
 
     .video-wrapper video {
@@ -160,6 +156,16 @@
       flex: 0 0 100%;
       scroll-snap-align: center;
       aspect-ratio: 16 / 9;
+      opacity: 0;
+      transform: translateY(20px);
+      /* ✅ FIX: give it real size so aspect-ratio can calculate height */
+      width: 100%;
+      max-width: 900px;
+    }
+
+    .landscape-carousel .video-wrapper video {
+      width: 100%;
+      height: auto; /* allow proper 16:9 scaling */
     }
 
     .carousel-nav {
@@ -169,8 +175,6 @@
       margin-top: 1rem;
       opacity: 0;
       transform: translateY(20px);
-      visibility: hidden;
-      transition: opacity 0.6s ease, transform 0.6s ease;
     }
 
     .carousel-btn {
@@ -193,11 +197,9 @@
       height: 2px;
       margin: 3rem auto;
       border-radius: 1px;
-      background: #aaa; /* subtle gray */
+      background: #aaa;
       opacity: 0;
       transform: translateY(20px);
-      visibility: hidden;
-      transition: opacity 0.6s ease, transform 0.6s ease;
     }
 
     footer { text-align: center; padding: 1rem; font-size: 0.9rem; color: #666; }
@@ -350,19 +352,11 @@
   ];
 
   staggeredElements.forEach((el, index) => {
-    let delay = 400 * index;
-
-    // Landscape carousel & nav appear after header & contacts
-    if (el.closest('.landscape-carousel') || el.classList.contains('carousel-nav')) {
-      const headerAndContactsCount = 1 + 1 + 1 + document.querySelectorAll('.contact-item a').length;
-      delay = 400 * headerAndContactsCount + 400 * (index - headerAndContactsCount);
-    }
-
     setTimeout(() => {
       el.style.opacity = '1';
       el.style.transform = 'translateY(0)';
-      el.style.visibility = 'visible';
-    }, delay);
+      el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    }, 400 * index);
   });
 </script>
 
