@@ -141,7 +141,7 @@
     @keyframes fadeInUp { 0% { transform: translateY(20px); opacity: 0; } 100% { transform: translateY(0); opacity: 1; } }
     @keyframes fadeInGallery { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); } }
 
-    /* Video Gallery */
+    /* Vertical Video Gallery */
     .demos {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -178,6 +178,46 @@
 
     /* Hover effect only scale */
     .video-wrapper:hover video {
+      transform: scale(1.03);
+    }
+
+    /* Landscape Carousel */
+    .landscape-carousel {
+      display: flex;
+      gap: 1.2rem;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      padding: 1rem 0;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .landscape-carousel::-webkit-scrollbar {
+      height: 8px;
+    }
+
+    .landscape-carousel::-webkit-scrollbar-thumb {
+      background: #aaa;
+      border-radius: 4px;
+    }
+
+    .landscape-carousel::-webkit-scrollbar-track {
+      background: #eee;
+    }
+
+    .landscape-carousel .video-card {
+      flex: 0 0 auto;
+      width: 320px;
+      scroll-snap-align: start;
+    }
+
+    .landscape-video video {
+      aspect-ratio: 16 / 9;
+      width: 100%;
+      border-radius: 12px;
+      transition: transform 0.3s ease;
+    }
+
+    .landscape-video:hover video {
       transform: scale(1.03);
     }
 
@@ -226,6 +266,7 @@
     Recent Projects
   </h2>
 
+  <!-- Vertical (9:16) Videos -->
   <section class="demos">
     <div class="video-card">
       <div class="video-wrapper">
@@ -242,6 +283,37 @@
     <div class="video-card">
       <div class="video-wrapper">
         <video controls preload="metadata"><source src="videos/video3.mp4" type="video/mp4"></video>
+      </div>
+    </div>
+  </section>
+
+  <!-- Landscape (16:9) Carousel -->
+  <h2 class="fade-up" style="text-align: center; font-size: 2.5rem; margin: 3rem 0 2rem; font-weight: bold;">
+    Landscape Projects
+  </h2>
+
+  <section class="landscape-carousel">
+    <div class="video-card">
+      <div class="video-wrapper landscape-video">
+        <video controls preload="metadata"><source src="videos/landscape1.mp4" type="video/mp4"></video>
+      </div>
+    </div>
+
+    <div class="video-card">
+      <div class="video-wrapper landscape-video">
+        <video controls preload="metadata"><source src="videos/landscape2.mp4" type="video/mp4"></video>
+      </div>
+    </div>
+
+    <div class="video-card">
+      <div class="video-wrapper landscape-video">
+        <video controls preload="metadata"><source src="videos/landscape3.mp4" type="video/mp4"></video>
+      </div>
+    </div>
+
+    <div class="video-card">
+      <div class="video-wrapper landscape-video">
+        <video controls preload="metadata"><source src="videos/landscape4.mp4" type="video/mp4"></video>
       </div>
     </div>
   </section>
