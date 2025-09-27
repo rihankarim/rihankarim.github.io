@@ -135,7 +135,7 @@
     @keyframes fadeInUp { 0% { transform: translateY(20px); opacity: 0; } 100% { transform: translateY(0); opacity: 1; } }
     @keyframes fadeInGallery { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); } }
 
-    /* Vertical videos grid */
+    /* Vertical videos grid (unchanged) */
     .demos {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -176,17 +176,16 @@
     .landscape-carousel {
       display: flex;
       gap: 1.2rem;
-      overflow-x: auto;
+      overflow: hidden;
       scroll-snap-type: x mandatory;
       padding: 1rem 0;
-      -webkit-overflow-scrolling: touch;
       scroll-behavior: smooth;
-      scrollbar-width: none;
+      position: relative;
     }
-    .landscape-carousel::-webkit-scrollbar { display: none; }
+
     .landscape-carousel .video-wrapper {
-      flex: 0 0 360px;
-      scroll-snap-align: start;
+      flex: 0 0 100%; /* show only one video at a time */
+      scroll-snap-align: center;
       aspect-ratio: 16 / 9;
     }
 
@@ -273,7 +272,7 @@
     </div>
   </section>
 
-  <!-- Vertical Projects Section (unchanged from original) -->
+  <!-- Vertical Projects Section (unchanged) -->
   <section>
     <h2 class="fade-up" style="text-align: center; font-size: 2.5rem; margin-bottom: 2rem; font-weight: bold;">Recent Projects</h2>
     <section class="demos">
@@ -344,8 +343,13 @@
     nextBtn.disabled = scrollLeft >= maxScroll - 1;
   }
 
-  nextBtn.addEventListener('click', () => { carousel.scrollBy({ left: 400, behavior: 'smooth' }); });
-  prevBtn.addEventListener('click', () => { carousel.scrollBy({ left: -400, behavior: 'smooth' }); });
+  function scrollVideo(next = true) {
+    const videoWidth = carousel.querySelector('.video-wrapper').offsetWidth + 12; // +gap
+    carousel.scrollBy({ left: next ? videoWidth : -videoWidth, behavior: 'smooth' });
+  }
+
+  nextBtn.addEventListener('click', () => scrollVideo(true));
+  prevBtn.addEventListener('click', () => scrollVideo(false));
   carousel.addEventListener('scroll', updateButtons);
   updateButtons();
 </script>
