@@ -24,7 +24,6 @@
       overflow: hidden;
     }
 
-    /* Header animations */
     header img { opacity: 0; transform: translateY(20px); }
     header h1 { opacity: 0; transform: translateY(20px); }
     header .tagline { opacity: 0; transform: translateY(20px); }
@@ -51,7 +50,6 @@
       color: #bbb;
     }
 
-    /* Contact icons */
     .contact {
       display: flex;
       justify-content: center;
@@ -114,33 +112,6 @@
 
     main { padding: 2rem; max-width: 900px; margin: auto; }
 
-    /* Vertical videos grid */
-    .demos {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 1.2rem;
-      justify-items: center;
-    }
-
-    .video-card { cursor: pointer; opacity: 0; transform: translateY(20px); }
-
-    .video-wrapper {
-      position: relative;
-      display: inline-block;
-      border-radius: 12px;
-      overflow: hidden;
-    }
-
-    .video-wrapper video {
-      width: 100%;
-      aspect-ratio: 9 / 16;
-      display: block;
-      border-radius: 12px;
-      transition: transform 0.3s ease;
-    }
-
-    .video-wrapper:hover video { transform: scale(1.03); }
-
     /* Landscape Carousel */
     .landscape-carousel {
       display: flex;
@@ -158,14 +129,13 @@
       aspect-ratio: 16 / 9;
       opacity: 0;
       transform: translateY(20px);
-      /* ✅ FIX: give it real size so aspect-ratio can calculate height */
       width: 100%;
       max-width: 900px;
     }
 
     .landscape-carousel .video-wrapper video {
       width: 100%;
-      height: auto; /* allow proper 16:9 scaling */
+      height: auto;
     }
 
     .carousel-nav {
@@ -190,17 +160,6 @@
 
     .carousel-btn:hover:not(:disabled) { background: #444; }
     .carousel-btn:disabled { background: #555; cursor: not-allowed; opacity: 0.6; }
-
-    /* Subtle separator */
-    .section-separator {
-      width: 80%;
-      height: 2px;
-      margin: 3rem auto;
-      border-radius: 1px;
-      background: #aaa;
-      opacity: 0;
-      transform: translateY(20px);
-    }
 
     footer { text-align: center; padding: 1rem; font-size: 0.9rem; color: #666; }
 
@@ -238,7 +197,6 @@
 </header>
 
 <main>
-
   <!-- Landscape Projects Section -->
   <section>
     <div class="landscape-carousel" id="landscapeCarousel">
@@ -257,29 +215,6 @@
       <button class="carousel-btn next">Next</button>
     </div>
   </section>
-
-  <!-- Subtle separator -->
-  <div class="section-separator"></div>
-
-  <!-- Vertical Projects Section -->
-  <section class="demos">
-    <div class="video-card">
-      <div class="video-wrapper">
-        <video controls preload="metadata"><source src="AI Agent.mp4" type="video/mp4"></video>
-      </div>
-    </div>
-    <div class="video-card">
-      <div class="video-wrapper">
-        <video controls preload="metadata"><source src="videos/video2.mp4" type="video/mp4"></video>
-      </div>
-    </div>
-    <div class="video-card">
-      <div class="video-wrapper">
-        <video controls preload="metadata"><source src="videos/video3.mp4" type="video/mp4"></video>
-      </div>
-    </div>
-  </section>
-
 </main>
 
 <footer>
@@ -346,9 +281,7 @@
     document.querySelector('header .tagline'),
     ...document.querySelectorAll('.contact-item a'),
     ...document.querySelectorAll('.landscape-carousel .video-wrapper'),
-    document.querySelector('.carousel-nav'),
-    document.querySelector('.section-separator'),
-    ...document.querySelectorAll('.demos .video-card')
+    document.querySelector('.carousel-nav')
   ];
 
   staggeredElements.forEach((el, index) => {
