@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Motion Designer Portfolio</title>
+  <title>Rihan Karim | Thumbnail Designer</title>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
   <style>
     html { scroll-behavior: smooth; }
@@ -24,10 +24,10 @@
       overflow: hidden;
     }
 
-    header img { opacity: 0; transform: translateY(20px); }
-    header h1 { opacity: 0; transform: translateY(20px); }
-    header .tagline { opacity: 0; transform: translateY(20px); }
-    .contact-item a { opacity: 0; transform: translateY(20px); }
+    header img, header h1, header .tagline, .contact-item a {
+      opacity: 0;
+      transform: translateY(20px);
+    }
 
     header img {
       border-radius: 50%;
@@ -110,68 +110,47 @@
 
     .contact-icon { margin: 0; font-size: 18px; }
 
-    main { padding: 2rem; max-width: 900px; margin: auto; }
-
-    /* Landscape Carousel */
-    .landscape-carousel {
-      display: flex;
-      gap: 1.2rem;
-      overflow: hidden;
-      scroll-snap-type: x mandatory;
-      padding: 1rem 0;
-      scroll-behavior: smooth;
-      position: relative;
+    main {
+      padding: 2rem;
+      max-width: 1000px;
+      margin: auto;
     }
 
-    .landscape-carousel .video-wrapper {
-      flex: 0 0 100%;
-      scroll-snap-align: center;
-      aspect-ratio: 16 / 9;
+    /* --- Thumbnail Grid --- */
+    .thumbnail-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+      margin-top: 2rem;
       opacity: 0;
       transform: translateY(20px);
-      width: 100%;
-      max-width: 900px;
     }
 
-    .landscape-carousel .video-wrapper video {
+    .thumb-item {
+      background: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .thumb-item:hover {
+      transform: scale(1.03);
+      box-shadow: 0 6px 14px rgba(0,0,0,0.2);
+    }
+
+    .thumb-item img {
       width: 100%;
       height: auto;
+      display: block;
     }
 
-    .carousel-nav {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      margin-top: 1rem;
-      opacity: 0;
-      transform: translateY(20px);
+    footer {
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      color: #666;
     }
-
-    .carousel-btn {
-      background: #111;
-      color: #fff;
-      border: none;
-      padding: 0.7rem 1.1rem;
-      border-radius: 50%;
-      cursor: pointer;
-      font-size: 1.2rem;
-      transition: background 0.3s ease, transform 0.3s ease;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-    }
-
-    .carousel-btn:hover:not(:disabled) {
-      background: #333;
-      transform: scale(1.1);
-    }
-
-    .carousel-btn:disabled {
-      background: #444;
-      cursor: not-allowed;
-      opacity: 0.5;
-      transform: none;
-    }
-
-    footer { text-align: center; padding: 1rem; font-size: 0.9rem; color: #666; }
 
     @media (max-width: 767px) {
       .contact { flex-direction: row; justify-content: center; }
@@ -185,7 +164,7 @@
 <header>
   <img src="profile.jpg" alt="Profile Picture">
   <h1>Rihan Karim</h1>
-  <p class="tagline">Editor & Motion Designer</p>
+  <p class="tagline">YouTube Thumbnail Designer</p>
 
   <div class="contact">
     <div class="contact-item">
@@ -207,31 +186,17 @@
 </header>
 
 <main>
-  <!-- Landscape Projects Section -->
   <section>
-    <div class="landscape-carousel" id="landscapeCarousel">
-      <div class="video-wrapper">
-        <video controls preload="metadata"><source src="comp1.mp4" type="video/mp4"></video>
-      </div>
-      <div class="video-wrapper">
-        <video controls preload="metadata"><source src="aiAgent.mp4" type="video/mp4"></video>
-      </div>
-      <div class="video-wrapper">
-        <video controls preload="metadata"><source src="comp2.mp4" type="video/mp4"></video>
-      </div>
-      <div class="video-wrapper">
-        <video controls preload="metadata"><source src="Aarong.mp4" type="video/mp4"></video>
-      </div>
-      <div class="video-wrapper">
-        <video controls preload="metadata"><source src="CocaCola2.mp4" type="video/mp4"></video>
-      </div>
-      <div class="video-wrapper">
-        <video controls preload="metadata"><source src="a.mp4" type="video/mp4"></video>
-      </div>
-    </div>
-    <div class="carousel-nav">
-      <button class="carousel-btn prev"><i class="fas fa-chevron-left"></i></button>
-      <button class="carousel-btn next"><i class="fas fa-chevron-right"></i></button>
+    <h2 style="margin-bottom:1rem;">My Thumbnail Designs</h2>
+    <div class="thumbnail-grid" id="thumbnailGrid">
+      <div class="thumb-item"><img src="thumb1.jpg" alt="Thumbnail 1"></div>
+      <div class="thumb-item"><img src="thumb2.jpg" alt="Thumbnail 2"></div>
+      <div class="thumb-item"><img src="thumb3.jpg" alt="Thumbnail 3"></div>
+      <div class="thumb-item"><img src="thumb4.jpg" alt="Thumbnail 4"></div>
+      <div class="thumb-item"><img src="thumb5.jpg" alt="Thumbnail 5"></div>
+      <div class="thumb-item"><img src="thumb6.jpg" alt="Thumbnail 6"></div>
+      <div class="thumb-item"><img src="thumb7.jpg" alt="Thumbnail 7"></div>
+      <div class="thumb-item"><img src="thumb8.jpg" alt="Thumbnail 8"></div>
     </div>
   </section>
 </main>
@@ -241,14 +206,6 @@
 </footer>
 
 <script>
-  // Pause other videos when one plays
-  const allMedia = document.querySelectorAll('video');
-  allMedia.forEach(media => {
-    media.addEventListener('play', () => {
-      allMedia.forEach(other => { if (other !== media) other.pause(); });
-    });
-  });
-
   // Email tooltip
   const emailIcon = document.getElementById('emailIcon');
   const tooltip = document.getElementById('tooltip');
@@ -271,36 +228,13 @@
     if (!emailIcon.contains(e.target)) tooltip.classList.remove('show');
   });
 
-  // Landscape carousel buttons
-  const carousel = document.getElementById('landscapeCarousel');
-  const prevBtn = document.querySelector('.carousel-btn.prev');
-  const nextBtn = document.querySelector('.carousel-btn.next');
-
-  function updateButtons() {
-    const scrollLeft = carousel.scrollLeft;
-    const maxScroll = carousel.scrollWidth - carousel.clientWidth;
-    prevBtn.disabled = scrollLeft <= 0;
-    nextBtn.disabled = scrollLeft >= maxScroll - 1;
-  }
-
-  function scrollVideo(next = true) {
-    const videoWidth = carousel.querySelector('.video-wrapper').offsetWidth + 12;
-    carousel.scrollBy({ left: next ? videoWidth : -videoWidth, behavior: 'smooth' });
-  }
-
-  nextBtn.addEventListener('click', () => scrollVideo(true));
-  prevBtn.addEventListener('click', () => scrollVideo(false));
-  carousel.addEventListener('scroll', updateButtons);
-  updateButtons();
-
-  // Staggered appearance in strict order
+  // Smooth fade-in animation
   const staggeredElements = [
     document.querySelector('header img'),
     document.querySelector('header h1'),
     document.querySelector('header .tagline'),
     ...document.querySelectorAll('.contact-item a'),
-    ...document.querySelectorAll('.landscape-carousel .video-wrapper'),
-    document.querySelector('.carousel-nav')
+    document.getElementById('thumbnailGrid')
   ];
 
   staggeredElements.forEach((el, index) => {
